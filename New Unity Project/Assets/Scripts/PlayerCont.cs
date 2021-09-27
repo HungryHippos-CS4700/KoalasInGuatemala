@@ -29,7 +29,7 @@ public class PlayerCont : PhysicsBase
 
         desiredy = 0;
         // Vertical Movement only if inside of Trunk
-        if (isInTrunk) {
+        if (isInTrunk()) {
             if (Input.GetAxis("Vertical") > 0) {
                 desiredy = 6.5f;
             }
