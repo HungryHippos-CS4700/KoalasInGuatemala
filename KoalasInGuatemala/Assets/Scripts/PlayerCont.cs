@@ -27,6 +27,7 @@ public class PlayerCont : PhysicsBase
         {
             isInTrunk = true;
             gravityFactor = 0;
+            velocity.y = 0;
             Debug.Log("entered Trunk");
         }
     }
