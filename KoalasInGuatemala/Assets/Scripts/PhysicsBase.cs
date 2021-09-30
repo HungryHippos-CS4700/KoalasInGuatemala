@@ -31,10 +31,11 @@ public class PhysicsBase : MonoBehaviour
         {
             if (hits[i].normal.x > 0.3f && horizontal)
             {
-                return;
+                // return;
             }
             if (hits[i].normal.y > 0.3f && !horizontal)
             {
+                velocity = new Vector2(velocity.x, 0);
                 return;
             }
         }
@@ -50,7 +51,6 @@ public class PhysicsBase : MonoBehaviour
         velocity += acceleration * Time.fixedDeltaTime;
 
         velocity.x = desiredx;
-        velocity.y = desiredy;
         Vector2 move = velocity * Time.fixedDeltaTime;
 
         // Move horizontally

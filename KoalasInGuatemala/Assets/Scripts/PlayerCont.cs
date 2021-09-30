@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class PlayerCont : PhysicsBase
 {
-    public bool isInTrunk;
-
     private float tempGravity;
+
+    public float horizontalSpeed;
+
+    public Vector2 velocityInTree;
+
+    public bool isInTrunk;
 
     // Start is called before the first frame update
     void Start()
     {
-        isInTrunk = false;
-        Debug.Log(gravityFactor);
         tempGravity = gravityFactor;
-
+        isInTrunk = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -24,6 +26,7 @@ public class PlayerCont : PhysicsBase
         if (otherName == "Trunk")
         {
             isInTrunk = true;
+            gravityFactor = 0;
             Debug.Log("entered Trunk");
         }
     }
@@ -35,6 +38,7 @@ public class PlayerCont : PhysicsBase
         if (otherName == "Trunk")
         {
             isInTrunk = false;
+            gravityFactor = tempGravity;
             Debug.Log("exited Trunk");
         }
     }
@@ -42,17 +46,15 @@ public class PlayerCont : PhysicsBase
     // Update is called once per frame
     void Update()
     {
-
-        Debug.Log(tempGravity);
         // Horizontal Movement
         desiredx = 0;
         if (Input.GetAxis("Horizontal") > 0)
         {
-            desiredx = 3;
+            desiredx = horizontalSpeed;
         }
         if (Input.GetAxis("Horizontal") < 0)
         {
-            desiredx = -3;
+            desiredx = -horizontalSpeed;
         }
 
         desiredy = 0;
@@ -60,7 +62,6 @@ public class PlayerCont : PhysicsBase
         // Vertical Movement only if inside of Trunk
         if (isInTrunk)
         {
-            gravityFactor = 0;
             if (Input.GetAxis("Vertical") > 0)
             {
                 desiredy = 6.5f;
@@ -69,10 +70,10 @@ public class PlayerCont : PhysicsBase
             {
                 desiredy = -6.5f;
             }
-        }
-        else if (!isInTrunk)
-        {
-            gravityFactor = tempGravity;
+            velocityInTree = new Vector2(desiredx/10f, desiredy);
+            // Debug.Log (velocityInTree);
+            Vector2 move = velocityInTree * Time.deltaTime;
+            transform.position += (Vector3) move;
         }
     }
 }
