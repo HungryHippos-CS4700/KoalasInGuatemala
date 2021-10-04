@@ -8,7 +8,7 @@ public class PlayerCont : PhysicsBase
 
     public float horizontalSpeed;
 
-    public Vector2 velocityInTree;
+    public float verticalSpeed;
 
     public bool isInTrunk;
 
@@ -49,11 +49,11 @@ public class PlayerCont : PhysicsBase
     {
         // Horizontal Movement
         desiredx = 0;
-        if (Input.GetAxis("Horizontal") > 0)
+        if (Input.GetAxisRaw("Horizontal") > 0)
         {
             desiredx = horizontalSpeed;
         }
-        if (Input.GetAxis("Horizontal") < 0)
+        if (Input.GetAxisRaw("Horizontal") < 0)
         {
             desiredx = -horizontalSpeed;
         }
@@ -63,17 +63,19 @@ public class PlayerCont : PhysicsBase
         // Vertical Movement only if inside of Trunk
         if (isInTrunk)
         {
-            if (Input.GetAxis("Vertical") > 0)
+            if (Input.GetAxisRaw("Vertical") > 0)
             {
-                desiredy = 6.5f;
+                desiredy = verticalSpeed / 1000;
             }
-            if (Input.GetAxis("Vertical") < 0)
+            if (Input.GetAxisRaw("Vertical") < 0)
             {
-                desiredy = -6.5f;
+                desiredy = -verticalSpeed / 1000;
             }
-            velocityInTree = new Vector2(desiredx/10f, desiredy);
-            // Debug.Log (velocityInTree);
-            Vector2 move = velocityInTree * Time.deltaTime;
+
+            // velocity.y = desiredy;
+            // Vector2 move = velocity * Time.fixedDeltaTime;
+            
+            Vector2 move = new Vector2(0, desiredy);
             transform.position += (Vector3) move;
         }
     }

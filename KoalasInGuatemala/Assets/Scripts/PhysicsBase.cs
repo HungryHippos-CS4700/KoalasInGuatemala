@@ -12,8 +12,6 @@ public class PhysicsBase : MonoBehaviour
 
     public float desiredy;
 
-    // comment
-
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +39,7 @@ public class PhysicsBase : MonoBehaviour
                 return;
             }
         }
-
+        
         transform.position += (Vector3) move;
     }
 
