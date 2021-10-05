@@ -36,11 +36,6 @@ public class PhysicsBase : MonoBehaviour
                     .Cast(move, hits, move.magnitude + 0.01f);
             for (int i = 0; i < cnt; ++i)
             {
-                // // if the object hit is vertical, i.e. a wall
-                // if (hits[i].normal.x > 0.3f && horizontal)
-                // {
-                //     return;
-                // }
                 // if the object hit is horizontal, i.e. a floor
                 if (hits[i].normal.y > 0.3f && !horizontal)
                 {

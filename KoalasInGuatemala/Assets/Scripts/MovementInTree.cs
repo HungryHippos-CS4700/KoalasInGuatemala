@@ -29,6 +29,7 @@ public class MovementInTree : PhysicsBase
         var otherName = other.gameObject.name;
         if (otherName == "Trunk")
         {
+            velocity.y *= 0.5f;
             allowVertical = false;
             Debug.Log("exited Trunk");
         }
