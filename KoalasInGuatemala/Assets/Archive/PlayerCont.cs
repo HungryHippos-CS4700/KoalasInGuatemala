@@ -63,20 +63,20 @@ public class PlayerCont : PhysicsBase
         // Vertical Movement only if inside of Trunk
         if (isInTrunk)
         {
-            if (Input.GetAxisRaw("Vertical") > 0)
+            if (Input.GetAxisRaw("Vertical") == 1)
             {
                 desiredy = verticalSpeed / 1000;
             }
-            if (Input.GetAxisRaw("Vertical") < 0)
+            if (Input.GetAxisRaw("Vertical") == -1)
             {
                 desiredy = -verticalSpeed / 1000;
             }
-
             // velocity.y = desiredy;
             // Vector2 move = velocity * Time.fixedDeltaTime;
             
             Vector2 move = new Vector2(0, desiredy);
             transform.position += (Vector3) move;
+
         }
     }
 }
