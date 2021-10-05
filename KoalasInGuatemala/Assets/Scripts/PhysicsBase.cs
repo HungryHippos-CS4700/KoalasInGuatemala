@@ -41,7 +41,6 @@ public class PhysicsBase : MonoBehaviour
                 // {
                 //     return;
                 // }
-
                 // if the object hit is horizontal, i.e. a floor
                 if (hits[i].normal.y > 0.3f && !horizontal)
                 {
@@ -53,10 +52,8 @@ public class PhysicsBase : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            transform.position += (Vector3) move;
-        }
+
+        transform.position += (Vector3) move;
     }
 
     // Update is called once per frame
