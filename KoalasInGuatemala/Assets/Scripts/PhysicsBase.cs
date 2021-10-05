@@ -28,7 +28,7 @@ public class PhysicsBase : MonoBehaviour
 
         // if vertical movement is NOT allowed, i.e, player input
         if (!allowVertical)
-        {   
+        {
             // store the hits from the Cast() method
             RaycastHit2D[] hits = new RaycastHit2D[16];
             int cnt =
@@ -36,23 +36,27 @@ public class PhysicsBase : MonoBehaviour
                     .Cast(move, hits, move.magnitude + 0.01f);
             for (int i = 0; i < cnt; ++i)
             {
-                // if the object hit is vertical, i.e. a wall
-                if (hits[i].normal.x > 0.3f && horizontal)
-                {
-                    return;
-                }
+                // // if the object hit is vertical, i.e. a wall
+                // if (hits[i].normal.x > 0.3f && horizontal)
+                // {
+                //     return;
+                // }
+
                 // if the object hit is horizontal, i.e. a floor
                 if (hits[i].normal.y > 0.3f && !horizontal)
                 {
                     velocity.y = 0;
+
                     // allow horizontal movement
                     velocity = new Vector2(velocity.x, 0);
                     return;
                 }
             }
         }
-
-        transform.position += (Vector3) move;
+        else
+        {
+            transform.position += (Vector3) move;
+        }
     }
 
     // Update is called once per frame
@@ -63,8 +67,8 @@ public class PhysicsBase : MonoBehaviour
         {
             velocity.y = desiredy;
         }
-        // otherwise, gravity will be applied
         else
+        // otherwise, gravity will be applied
         {
             // Makes the object fall
             Vector2 acceleration = 9.81f * Vector2.down * gravityFactor;
