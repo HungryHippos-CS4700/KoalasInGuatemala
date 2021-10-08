@@ -27,6 +27,7 @@ public class MovementInTree : PhysicsBase
     {
         // Check if the player is colliding with the trunk
         var otherName = other.gameObject.name;
+        
         if (otherName == "Trunk")
         {
             velocity.y *= 0.5f;
