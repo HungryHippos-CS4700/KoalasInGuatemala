@@ -40,17 +40,15 @@ public class PhysicsBase : MonoBehaviour
                 // if the object hit is horizontal, i.e. a floor
                 if (hits[i].normal.y > 0.001f && !horizontal)
                 {
-                    velocity.y = 0;
-
                     // allow horizontal movement
                     velocity = new Vector2(velocity.x, 0);
                     return;
                 }
-                if (Mathf.Abs(hits[i].normal.x) > 0.001f && horizontal && hits[i].collider.gameObject.name != "Trunk")
-                {
-                    velocity.x=0;
-                    return;
-                }
+                // if (Mathf.Abs(hits[i].normal.x) > 0.001f && horizontal && hits[i].collider.gameObject.name != "Trunk")
+                // {
+                //     velocity = new Vector2(velocity.x, 0);
+                //     return;
+                // }
             }
         }
 
