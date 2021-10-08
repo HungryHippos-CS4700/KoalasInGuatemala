@@ -22,13 +22,13 @@ public class PlayerController : MovementInTree
         desiredx = 0;
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
-            Debug.Log("am i here??? > 0");
+            // Debug.Log("am i here??? > 0");
             desiredx = horizontalSpeed;
             createDust();
         }
         if (Input.GetAxisRaw("Horizontal") < 0)
         {
-            Debug.Log("am i here??? < 0");
+            // Debug.Log("am i here??? < 0");
             desiredx = -horizontalSpeed;
             createDust();
         }
