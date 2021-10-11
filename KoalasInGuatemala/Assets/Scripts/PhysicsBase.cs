@@ -33,7 +33,7 @@ public class PhysicsBase : MonoBehaviour
             RaycastHit2D[] hits = new RaycastHit2D[16];
             int cnt =
                 GetComponent<Rigidbody2D>()
-                    .Cast(move, hits, move.magnitude + 0.01f);
+                    .Cast(move, hits, move.magnitude + 0.00001f);
         
             for (int i = 0; i < cnt; ++i)
             {
