@@ -33,22 +33,18 @@ public class PhysicsBase : MonoBehaviour
             RaycastHit2D[] hits = new RaycastHit2D[16];
             int cnt =
                 GetComponent<Rigidbody2D>()
-                    .Cast(move, hits, move.magnitude + 0.00001f);
-        
+                    .Cast(move, hits, move.magnitude + 0.01f);
             for (int i = 0; i < cnt; ++i)
             {
                 // if the object hit is horizontal, i.e. a floor
-                if (hits[i].normal.y > 0.001f && !horizontal)
+                if (hits[i].normal.y > 0.3f && !horizontal)
                 {
+                    velocity.y = 0;
+
                     // allow horizontal movement
                     velocity = new Vector2(velocity.x, 0);
                     return;
                 }
-                // if (Mathf.Abs(hits[i].normal.x) > 0.001f && horizontal && hits[i].collider.gameObject.name != "Trunk")
-                // {
-                //     velocity = new Vector2(velocity.x, 0);
-                //     return;
-                // }
             }
         }
 

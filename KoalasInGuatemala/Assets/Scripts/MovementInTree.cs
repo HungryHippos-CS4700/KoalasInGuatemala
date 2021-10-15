@@ -15,8 +15,7 @@ public class MovementInTree : PhysicsBase
     {
         // Check if the player is colliding with the trunk
         var otherName = other.gameObject.name;
-
-        if (otherName == "Trunk" || otherName == "Branch")
+        if (otherName == "Trunk")
         {
             allowVertical = true;
             velocity.y = 0;
@@ -28,9 +27,9 @@ public class MovementInTree : PhysicsBase
     {
         // Check if the player is colliding with the trunk
         var otherName = other.gameObject.name;
-        if (otherName == "Trunk" || otherName == "Branch")
+        if (otherName == "Trunk")
         {
-            // velocity.y *= 0;
+            velocity.y *= 0.5f;
             allowVertical = false;
             Debug.Log("exited Trunk");
         }
