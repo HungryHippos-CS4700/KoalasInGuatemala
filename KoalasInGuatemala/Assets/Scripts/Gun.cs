@@ -5,15 +5,18 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     public GameObject player;
+    public Transform arm;
+    public Transform armPivot;
     public GameObject bullet;
     public Transform firePoint;
     public float bulletSpeed = 50;
     public float fireRate;
     public bool canFire;
+    public bool isFiring;
 
     Vector2 lookDirection;
     float lookAngle;
-
+    
 
     private IEnumerator FireDebounce()
     {
@@ -24,14 +27,38 @@ public class Gun : MonoBehaviour
         canFire = true;
     }
 
+    void Start()
+    {
+        isFiring = false;
+    }
+
     void Update()
     {
         lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - new Vector3(player.transform.position.x, player.transform.position.y);
+        //lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
-        firePoint.rotation = Quaternion.Euler(0, 0, lookAngle);
+        if(lookAngle > 90 || lookAngle < -90)
+        {
+            player.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            //player.GetComponent<SpriteRenderer>().flipX = true;
+            arm.rotation = Quaternion.Euler(0f, 0f, lookAngle);
+        }
+        else
+        {
+            player.transform.rotation = Quaternion.Euler(0f, -180f, 0f);
+            arm.rotation = Quaternion.Euler(180f, 0f, -lookAngle);
+            //player.GetComponent<SpriteRenderer>().flipX = false;
+        }
 
-        if (Input.GetAxis("Fire1") == 1 && canFire)
+        firePoint.rotation = Quaternion.Euler(0f, 0f, lookAngle);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("clicked mousebutton");
+            isFiring = !isFiring;
+        }
+        if (isFiring && canFire)
         {
             GameObject bulletClone = Instantiate(bullet);
             bulletClone.transform.position = firePoint.position;

@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MovementInTree
 {
+
     public float horizontalSpeed;
-
     public float verticalSpeed;
-
-    public bool facingRight;
 
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -21,12 +18,14 @@ public class PlayerController : MovementInTree
     {
         // Horizontal Movement
         desiredx = 0;
-        if (Input.GetAxisRaw("Horizontal") == 1)
+        if (Input.GetAxisRaw("Horizontal") > 0)
         {
+            // Debug.Log("am i here??? > 0");
             desiredx = horizontalSpeed;
         }
-        if (Input.GetAxisRaw("Horizontal") == -1)
+        if (Input.GetAxisRaw("Horizontal") < 0)
         {
+            // Debug.Log("am i here??? < 0");
             desiredx = -horizontalSpeed;
         }
 
@@ -34,11 +33,11 @@ public class PlayerController : MovementInTree
 
         if (allowVertical)
         {
-            if (Input.GetAxisRaw("Vertical") == 1)
+            if (Input.GetAxisRaw("Vertical") > 0)
             {
                 desiredy = verticalSpeed;
             }
-            if (Input.GetAxisRaw("Vertical") == -1)
+            if (Input.GetAxisRaw("Vertical") < 0 && !onGround)
             {
                 desiredy = -verticalSpeed;
             }
