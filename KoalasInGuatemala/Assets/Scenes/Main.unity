@@ -447,7 +447,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073411576}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.2, y: -2.66, z: 4.186831}
+  m_LocalPosition: {x: -2.2, y: -2.55, z: 4.186831}
   m_LocalScale: {x: 3.303161, y: 0.4297302, z: 1}
   m_Children: []
   m_Father: {fileID: 1268895676}
@@ -514,7 +514,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -850,7 +850,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1464275409}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.62, y: -1.79, z: 4.186831}
+  m_LocalPosition: {x: 3.62, y: -1.72, z: 4.186831}
   m_LocalScale: {x: 3.285038, y: 0.48746678, z: 1}
   m_Children: []
   m_Father: {fileID: 1268895676}
@@ -917,7 +917,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -959,7 +959,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501856283}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.26, y: 1.44, z: 4.186831}
+  m_LocalPosition: {x: -2.26, y: 1.49, z: 4.186831}
   m_LocalScale: {x: 3.267025, y: 0.54471326, z: 1}
   m_Children: []
   m_Father: {fileID: 1268895676}
@@ -1026,7 +1026,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1177,8 +1177,11 @@ MonoBehaviour:
   onGround: 0
   inTrunk: 0
   isHit: 0
+  onBranch: 0
   horizontalSpeed: 5
   verticalSpeed: 5
+  leafTrail: {fileID: 2100822054}
+  moving: 0
 --- !u!95 &1673562562
 Animator:
   serializedVersion: 3
@@ -1307,6 +1310,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 392542339}
+  - {fileID: 2100822055}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
@@ -1377,8 +1381,11 @@ MonoBehaviour:
   onGround: 0
   inTrunk: 0
   isHit: 0
+  onBranch: 0
   horizontalSpeed: 0
   verticalSpeed: 0
+  leafTrail: {fileID: 2100822054}
+  moving: 0
   player: {fileID: 1673562560}
   arm: {fileID: 787762387}
   armPivot: {fileID: 1644898647}
@@ -1648,7 +1655,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -2200,7 +2207,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 0.85, y: 0, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -2268,7 +2275,7 @@ ParticleSystem:
     m_UseMeshMaterialIndex: 0
     m_UseMeshColors: 1
     alignToDirection: 0
-    m_Texture: {fileID: 10305, guid: 0000000000000000f000000000000000, type: 0}
+    m_Texture: {fileID: 0}
     m_TextureClipChannel: 3
     m_TextureClipThreshold: 0
     m_TextureUVChannel: 0
@@ -6278,10 +6285,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2100822052}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.52, y: 1.36, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: -0.954, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 1673562566}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
