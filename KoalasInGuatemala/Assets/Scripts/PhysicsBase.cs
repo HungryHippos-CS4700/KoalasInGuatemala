@@ -11,6 +11,8 @@ public class PhysicsBase : MonoBehaviour
     public bool allowVertical;
     public bool onGround;
 
+    public bool inTrunk;
+
     // Start is called before the first frame update
     void Start()
     {

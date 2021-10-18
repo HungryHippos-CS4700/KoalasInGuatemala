@@ -624,7 +624,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1175,6 +1175,7 @@ MonoBehaviour:
   desiredy: 0
   allowVertical: 0
   onGround: 0
+  inTrunk: 0
   horizontalSpeed: 5
   verticalSpeed: 5
 --- !u!95 &1673562562
@@ -1367,12 +1368,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02094ccbb04c604e9f00508337ae3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0}
+  gravityFactor: 0
+  desiredx: 0
+  desiredy: 0
+  allowVertical: 0
+  onGround: 0
+  inTrunk: 0
+  horizontalSpeed: 0
+  verticalSpeed: 0
   player: {fileID: 1673562560}
   arm: {fileID: 787762387}
   armPivot: {fileID: 1644898647}
   bullet: {fileID: 8213974378795144997, guid: 6103ef1e928ad904c9db1cb7aa7c804e, type: 3}
   firePoint: {fileID: 1549971946}
-  bulletSpeed: 50
+  bulletSpeed: 20
   fireRate: 0.1
   canFire: 1
   isFiring: 0

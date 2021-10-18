@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+public class Gun : PlayerController
 {
     public GameObject player;
     public Transform arm;
@@ -58,14 +58,14 @@ public class Gun : MonoBehaviour
             Debug.Log("clicked mousebutton");
             isFiring = !isFiring;
         }
-        if (isFiring && canFire)
+        if (isFiring && canFire && !inTrunk)
         {
             GameObject bulletClone = Instantiate(bullet);
             bulletClone.transform.position = firePoint.position;
             bulletClone.transform.rotation = Quaternion.Euler(0, 0, lookAngle);
 
             bulletClone.GetComponent<Rigidbody2D>().velocity = firePoint.right * bulletSpeed;
-            Object.Destroy(bulletClone, 0.3f);
+            Object.Destroy(bulletClone, 0.8f);
             StartCoroutine(FireDebounce());
         }
     }

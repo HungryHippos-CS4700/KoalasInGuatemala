@@ -10,6 +10,7 @@ public class MovementInTree : PhysicsBase
     {
         allowVertical = false;
         onGround = false;
+        inTrunk = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -20,13 +21,18 @@ public class MovementInTree : PhysicsBase
         if (otherName == "Tree" || otherName == "Branch")
         {
             allowVertical = true;
-            Debug.Log("entered Trunk");
+            Debug.Log("entered Tree");
         }
-        if(otherName == "Ground")
+        else if (otherName == "Ground")
         {
             onGround = true;
             Debug.Log("hit ground");
             Debug.Log("On ground?: " + onGround);
+        }
+        else if (otherName == "Trunk")
+        {
+            inTrunk = true;
+            Debug.Log("entered Trunk");
         }
     }
 
@@ -38,12 +44,16 @@ public class MovementInTree : PhysicsBase
         {
             // velocity.y *= 0;
             allowVertical = false;
-            Debug.Log("exited Trunk");
+            Debug.Log("exited Tree");
         }
-
-        if(otherName == "Ground")
+        else if (otherName == "Ground")
         {
             onGround = false;
+        }
+        else if (otherName == "Trunk")
+        {
+            inTrunk = false;
+            Debug.Log("exited Trunk");
         }
     }
 
