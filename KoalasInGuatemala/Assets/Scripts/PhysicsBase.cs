@@ -13,6 +13,8 @@ public class PhysicsBase : MonoBehaviour
 
     public bool inTrunk;
 
+    public bool isHit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,16 +26,16 @@ public class PhysicsBase : MonoBehaviour
         {
             return;
         }
-
         // if vertical movement is NOT allowed, i.e, player input
         if (!allowVertical)
         {
+
             // store the hits from the Cast() method
             RaycastHit2D[] hits = new RaycastHit2D[16];
             int cnt =
                 GetComponent<Rigidbody2D>()
                     .Cast(move, hits, move.magnitude + 0.00001f);
-        
+
             for (int i = 0; i < cnt; ++i)
             {
                 // if the object hit is horizontal, i.e. a floor
@@ -49,9 +51,10 @@ public class PhysicsBase : MonoBehaviour
                 //     return;
                 // }
             }
+
         }
 
-        transform.position += (Vector3) move;
+        transform.position += (Vector3)move;
     }
 
     // Update is called once per frame

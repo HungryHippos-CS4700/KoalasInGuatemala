@@ -7,7 +7,6 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {   
-        Debug.Log("kwjefhalofakew!!!");
         var otherName = other.gameObject.name;
         if (otherName == "Tree")
         {
