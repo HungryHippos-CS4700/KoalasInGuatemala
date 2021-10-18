@@ -952,6 +952,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 3780424707922546879, guid: 67e162a81eb56934bb52fec849a22548, type: 3}
+      propertyPath: isGameScene
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6573399054820117629, guid: 67e162a81eb56934bb52fec849a22548, type: 3}
       propertyPath: m_IsActive
       value: 1
