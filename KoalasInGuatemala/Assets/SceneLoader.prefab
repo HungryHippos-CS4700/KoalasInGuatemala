@@ -167,6 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGameScene: 0
   transitionType: {fileID: 4836681696395234272}
+  startOfGame: {fileID: 0}
   transitionTime: 1
 --- !u!1 &3597222324995143047
 GameObject:
@@ -315,7 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.02745098, g: 0.06666667, b: 0.08627451, a: 1}
+  m_Color: {r: 0.011764706, g: 0.050980393, b: 0.09411765, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
