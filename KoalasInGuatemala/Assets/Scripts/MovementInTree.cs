@@ -11,6 +11,7 @@ public class MovementInTree : PhysicsBase
         allowVertical = false;
         onGround = false;
         inTrunk = false;
+        onBranch = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -18,10 +19,12 @@ public class MovementInTree : PhysicsBase
         // Check if the player is colliding with the trunk
         var otherName = other.gameObject.name;
 
-        if (otherName == "Tree" || otherName == "Branch")
+        if (otherName == "Tree")
         {
             allowVertical = true;
             Debug.Log("entered Tree");
+        } else if (otherName == "Branch") {
+            onBranch = true;
         }
         else if (otherName == "Ground")
         {
@@ -44,11 +47,13 @@ public class MovementInTree : PhysicsBase
     {
         // Check if the player is colliding with the trunk
         var otherName = other.gameObject.name;
-        if (otherName == "Tree" || otherName == "Branch")
+        if (otherName == "Tree")
         {
             // velocity.y *= 0;
             allowVertical = false;
             Debug.Log("exited Tree");
+        } else if (otherName == "Branch") {
+            onBranch = false;
         }
         else if (otherName == "Ground")
         {

@@ -7,6 +7,9 @@ public class PlayerController : MovementInTree
 
     public float horizontalSpeed;
     public float verticalSpeed;
+    public ParticleSystem leafTrail;
+
+    public bool moving;
 
     // Start is called before the first frame update
     void Start()
@@ -22,10 +25,12 @@ public class PlayerController : MovementInTree
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
             desiredx = horizontalSpeed;
+            moving = true;
         }
         if (Input.GetAxisRaw("Horizontal") < 0)
         {
             desiredx = -horizontalSpeed;
+            moving = true;
         }
 
         desiredy = 0;
@@ -41,5 +46,15 @@ public class PlayerController : MovementInTree
                 desiredy = -verticalSpeed;
             }
         }
+
+        if (moving && Mathf.Abs(velocity.x) < 0.1f && onBranch) {
+            moving = false;
+            createLeafTrail();
+        }
+    }
+
+    void createLeafTrail()
+    {
+        leafTrail.Play();
     }
 }

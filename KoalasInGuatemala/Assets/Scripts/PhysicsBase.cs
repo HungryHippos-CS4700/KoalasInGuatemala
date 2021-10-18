@@ -10,10 +10,9 @@ public class PhysicsBase : MonoBehaviour
     public float desiredy;
     public bool allowVertical;
     public bool onGround;
-
     public bool inTrunk;
-
     public bool isHit;
+    public bool onBranch;
 
     // Start is called before the first frame update
     void Start()
