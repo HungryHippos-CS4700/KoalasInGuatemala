@@ -34,6 +34,10 @@ public class MovementInTree : PhysicsBase
             inTrunk = true;
             Debug.Log("entered Trunk");
         }
+        else if (otherName == "Bullet") {
+            isHit = true;
+            Debug.Log("it's hit");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
