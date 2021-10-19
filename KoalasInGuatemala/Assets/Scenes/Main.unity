@@ -924,6 +924,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1406481947}
     m_Modifications:
+    - target: {fileID: 1114823603360906224, guid: be1f6e101d6305b47837f812087c42b7, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1114823603360906226, guid: be1f6e101d6305b47837f812087c42b7, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -942,7 +946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1114823603360906226, guid: be1f6e101d6305b47837f812087c42b7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.228
       objectReference: {fileID: 0}
     - target: {fileID: 1114823603360906226, guid: be1f6e101d6305b47837f812087c42b7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -980,6 +984,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1114823603360906227, guid: be1f6e101d6305b47837f812087c42b7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f01e87c0be542bf4b8c6a93496b5f48c, type: 2}
     - target: {fileID: 1114823603360906237, guid: be1f6e101d6305b47837f812087c42b7, type: 3}
       propertyPath: m_Name
       value: Leaf Trail_PS
