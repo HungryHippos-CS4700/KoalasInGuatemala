@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public float fireRate;
     public bool canFire;
     public bool isFiring;
+    public bool isMovingRight;
 
     // Animation variables
     public Animator animator;
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         allowVertical = false;
         inTrunk = false;
+        
     }
 
     // Fire gun
@@ -57,7 +59,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsClimbing", true);
             arm.GetComponent<SpriteRenderer>().enabled = false;
             inTrunk = true;
-            isFiring = false;
+            // isFiring = false;
         }
     }
 
@@ -124,5 +126,6 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("IsMoving", false);
         }
+
     }
 }
