@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1114823603360906224}
   - component: {fileID: 1114823603360906227}
   m_Layer: 0
-  m_Name: Dust PS
+  m_Name: Dust_PS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4758,7 +4758,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 59ad256e17439c94ba4e47cda0afa12e, type: 2}
+  - {fileID: 2100000, guid: e3e27148c06c03842b1bbb319a6a7a0a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4777,7 +4777,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2105305499
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: -5
   m_RenderMode: 0
   m_SortMode: 0
