@@ -133,6 +133,13 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(Fire());
         }
+
+        // Create Leaf Trail
+        if (Mathf.Abs(inputHorizontal) > 0 && onBranch)
+        {
+            leafTrailVelocity.x = 0.8f * inputHorizontal;
+            createLeafTrail();
+        }
     }
 
     void FixedUpdate()
@@ -158,10 +165,5 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsMoving", false);
         }
 
-        if (Mathf.Abs(inputHorizontal) > 0 && onBranch)
-        {
-            leafTrailVelocity.x = 0.8f * inputHorizontal;
-            createLeafTrail();
-        }
     }
 }
