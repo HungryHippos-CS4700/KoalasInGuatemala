@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.name == "Branch")
         {
-            Debug.Log("aioserfjio");
+            Debug.Log("Branch Entered");
             onBranch = true;
         }
     }
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.name == "Branch")
         {
-            Debug.Log("left thahfdjasdf");
+            Debug.Log("Branch Left");
             onBranch = false;
         }
     }
