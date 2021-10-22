@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Branch
+  - Bullet
+  - Trunk
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -41,6 +45,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Effects
+    uniqueID: 682194449
+    locked: 0
   - name: Player
     uniqueID: 1092930017
+    locked: 0
+  - name: HealthBar
+    uniqueID: 1982220603
     locked: 0
