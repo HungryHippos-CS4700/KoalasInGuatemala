@@ -1791,6 +1791,10 @@ PrefabInstance:
       value: SceneLoader
       objectReference: {fileID: 0}
     - target: {fileID: 3780424707922546879, guid: 67e162a81eb56934bb52fec849a22548, type: 3}
+      propertyPath: isGameScene
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3780424707922546879, guid: 67e162a81eb56934bb52fec849a22548, type: 3}
       propertyPath: startOfGame
       value: 
       objectReference: {fileID: 25538402}
