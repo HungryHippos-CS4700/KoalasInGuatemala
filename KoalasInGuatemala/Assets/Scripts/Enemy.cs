@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected float maxHealth;
-    [SerializeField] protected float health;
-    [SerializeField] protected HealthBar healthBar;
-    protected Vector3 offset;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float health;
+    [SerializeField] private HealthBar healthBar;
+    [SerializeField] private AudioManager audioManager;
+    [SerializeField] private Vector3 offset;
 
-
+    void Start()
+    {
+        audioManager = FindObjectOfType<AudioManager>();
+    }
+    
     private void OnTriggerEnter2D(Collider2D collider)
     {
+
         if (collider.CompareTag("Bullet"))
         {
             health -= 1f;
@@ -24,6 +30,7 @@ public class Enemy : MonoBehaviour
         healthBar.transform.position = transform.position + offset;
         if (health <= 0)
         {
+            audioManager.Play("Enemy_Death");
             Object.Destroy(gameObject);
         }
     }

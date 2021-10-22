@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 128489322534247248}
   - component: {fileID: 128489322534247249}
   - component: {fileID: 128489322534247254}
-  - component: {fileID: 128489322534247255}
   - component: {fileID: 128489322534247252}
+  - component: {fileID: 8878364811804730099}
   m_Layer: 0
   m_Name: Owl
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,21 +124,6 @@ CircleCollider2D:
   m_Offset: {x: -0.1875, y: -0.25}
   serializedVersion: 2
   m_Radius: 0.75
---- !u!114 &128489322534247255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 128489322534247253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 008aeddc4f0a4e643aa955ad05f54f47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 5
-  health: 5
-  healthBar: {fileID: 3288856968454279049}
 --- !u!95 &128489322534247252
 Animator:
   serializedVersion: 3
@@ -158,6 +143,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8878364811804730099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128489322534247253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 695ed35d3dd03c646ab65d77a60c91e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  health: 5
+  healthBar: {fileID: 3288856968454279049}
+  audioManager: {fileID: 0}
+  offset: {x: 0, y: -1.05, z: 0}
 --- !u!1001 &9221379727035750271
 PrefabInstance:
   m_ObjectHideFlags: 0

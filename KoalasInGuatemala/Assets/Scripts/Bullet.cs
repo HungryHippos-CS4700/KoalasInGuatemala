@@ -5,10 +5,12 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private GameObject fragment;
+    [SerializeField] private AudioManager audioManager;
     public float speed;
 
     void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         Object.Destroy(gameObject, 0.8f);
     }
 
@@ -27,8 +29,17 @@ public class Bullet : MonoBehaviour
         if (!collider.CompareTag("Bullet"))
         {
             CreateFragments();
+            if (collider.CompareTag("Enemy"))
+            {
+                audioManager.Play("Enemy_Hit", true);
+            }
+            else
+            {
+                audioManager.Play("Bullet_Collision");
+            }
             Object.Destroy(gameObject);
         }
+
     }
 
     void Update()

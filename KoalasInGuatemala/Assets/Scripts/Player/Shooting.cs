@@ -7,7 +7,8 @@ public class Shooting : MonoBehaviour
     enum FireMode {
         SEMI,
         SPREAD,
-        BURST
+        BURST,
+        LASER
     }
     [SerializeField] private Animator animator;
     [SerializeField] private TreeBehavior treeBehavior;
@@ -16,7 +17,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] private FireMode fireMode;
     [SerializeField] private Bullet bullet;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private AudioSource gunSound;
+    [SerializeField] private AudioManager audioManager;
     [SerializeField] private float fireRate;
     [SerializeField] private float timeSinceLastShot;
     [SerializeField] private float cameraShakeOffset;
@@ -37,6 +38,7 @@ public class Shooting : MonoBehaviour
         canBurst= false;
         for (int i = 0; i < 3; i++)
         {
+            audioManager.Play("Auto");
             ShootingDefaults();
             Bullet bulletClone = Instantiate(bullet, firePoint.position, Quaternion.Euler(0f, 0f, lookAngle));
             bulletClone.speed = 30f;
@@ -49,7 +51,6 @@ public class Shooting : MonoBehaviour
     // Everything to be done when a bullet is fired
     private void ShootingDefaults()
     {
-        gunSound.Play();
         Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + Random.Range(-cameraShakeOffset, cameraShakeOffset), Camera.main.transform.position.y + Random.Range(-cameraShakeOffset, cameraShakeOffset), -10f);
     }
     // Fire gun
@@ -60,6 +61,7 @@ public class Shooting : MonoBehaviour
         {
             case FireMode.SEMI:
             {
+                audioManager.Play("Pistol");
                 ShootingDefaults();
                 fireRate = .25f;
                 Bullet bulletClone = Instantiate(bullet, firePoint.position, Quaternion.Euler(0f, 0f, lookAngle));
@@ -70,6 +72,7 @@ public class Shooting : MonoBehaviour
 
             case FireMode.SPREAD:
             {
+                audioManager.Play("Shotgun");
                 ShootingDefaults();
                 fireRate = 1f;
                 for (int i = 0; i < 5; i++)
@@ -87,6 +90,15 @@ public class Shooting : MonoBehaviour
                 fireRate = .5f;
                 if (canBurst)
                     StartCoroutine(BurstFire());
+                break;
+            }
+
+            case FireMode.LASER:
+            {
+                fireRate = .05f;
+                Bullet bulletClone = Instantiate(bullet, firePoint.position, Quaternion.Euler(0f, 0f, lookAngle));
+                bulletClone.speed = 30f;
+                DisableBulletCollisionWithPlayer(bulletClone);
                 break;
             }
         }

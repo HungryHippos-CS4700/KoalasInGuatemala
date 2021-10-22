@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private TreeBehavior treeBehavior;
     [SerializeField] private float speed;
-    [SerializeField] private OwlEnemy owl;
+    [SerializeField] private Enemy owl;
     private float inputHorizontal;
     private float inputVertical;
     public Animator animator;
@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     {
         for(int i = 0; i < 5; i++)
         {
-            Enemy newOwl = Instantiate(owl, new Vector3(Random.Range(-3f, 3f), Random.Range(-4f, 4f), 0), Quaternion.identity);
+            Enemy newOwl = Instantiate(owl, new Vector2(Random.Range(-3f, 3f), Random.Range(-4f, 4f)), Quaternion.identity);
         }
         rb = GetComponent<Rigidbody2D>();
         treeBehavior.inTrunk = false;
