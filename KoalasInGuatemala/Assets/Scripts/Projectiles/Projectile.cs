@@ -11,9 +11,9 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<Rigidbody2D>().velocity = transform.right * speed;
         audioManager = FindObjectOfType<AudioManager>();
         playerCollider = FindObjectOfType<PlayerController>().GetComponent<BoxCollider2D>();
-        GetComponent<Rigidbody2D>().velocity = transform.right * speed;
         BoxCollider2D projectileCollider = GetComponent<BoxCollider2D>();
         Physics2D.IgnoreCollision(projectileCollider, playerCollider);
         Destroy(gameObject, 1.5f);

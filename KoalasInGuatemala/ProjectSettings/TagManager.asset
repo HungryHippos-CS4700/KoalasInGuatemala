@@ -8,6 +8,8 @@ TagManager:
   - Bullet
   - Trunk
   - Enemy
+  - Projectile
+  - BranchTile
   layers:
   - Default
   - TransparentFX

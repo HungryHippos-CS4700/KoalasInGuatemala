@@ -34,7 +34,7 @@ public class Rocket : Projectile
                 Enemy enemy = nearbyEnemy.GetComponent<Enemy>();
                 if (enemy != null)
                 {
-                    float damage = Random.Range(30, 40);
+                    float damage = Random.Range(50, 55);
                     enemy.TakeDamage(damage);
                     audioManager.Play("Enemy_Hit", true);
                 }

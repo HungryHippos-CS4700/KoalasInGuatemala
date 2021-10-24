@@ -8,7 +8,9 @@ public class Shooting : MonoBehaviour
         SEMI,
         SPREAD,
         BURST,
-        RPG
+        RPG,
+        AUTO,
+        BRR
     }
     [SerializeField] private Animator animator;
     [SerializeField] private TreeBehavior treeBehavior;
@@ -43,16 +45,17 @@ public class Shooting : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             audioManager.Play("Auto");
-            Bullet(30f, false, "Auto");
+            Bullet(30f, 30f, false, "Auto");
             yield return new WaitForSeconds(.1f);
         }
         canBurst = true;
     }
 
     // Everything to be done when a bullet is fired
-    private void Bullet(float speed, bool spread, string audio)
+    private void Bullet(float speed, float damage, bool spread, string audio)
     {
-        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + Random.Range(-cameraShakeOffset, cameraShakeOffset), Camera.main.transform.position.y + Random.Range(-cameraShakeOffset, cameraShakeOffset), -10f);
+        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + Random.Range(-cameraShakeOffset, cameraShakeOffset),
+                                                    Camera.main.transform.position.y + Random.Range(-cameraShakeOffset, cameraShakeOffset), -10f);
         audioManager.Play(audio);
         Bullet bulletClone;
         if (spread)
@@ -63,12 +66,14 @@ public class Shooting : MonoBehaviour
         {
             bulletClone = Instantiate(bullet, firePoint.position, Quaternion.Euler(0f, 0f, lookAngle));
         }
+        bulletClone.damage = damage;
         bulletClone.speed = speed;
     }
 
     private void Rocket()
     {
-        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + Random.Range(-cameraShakeOffset-.2f, cameraShakeOffset+.2f), Camera.main.transform.position.y + Random.Range(-cameraShakeOffset-.1f, cameraShakeOffset+.1f), -10f);
+        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + Random.Range(-cameraShakeOffset-.2f, cameraShakeOffset+.2f),
+                                                    Camera.main.transform.position.y + Random.Range(-cameraShakeOffset-.2f, cameraShakeOffset+.2f), -10f);
         audioManager.Play("RPG");
         Rocket rocketClone;
         rocketClone = Instantiate(rocket, firePoint.position, Quaternion.Euler(0f, 0f, lookAngle));
@@ -82,8 +87,9 @@ public class Shooting : MonoBehaviour
         {
             case FireMode.SEMI:
             {
-                fireRate = .25f;
-                Bullet(30f, false, "Pistol");
+                
+                fireRate = 0.25f;
+                Bullet(30f, 30f, false, "Pistol");
                 break;
             }
 
@@ -92,7 +98,7 @@ public class Shooting : MonoBehaviour
                 fireRate = 1f;
                 for (int i = 0; i < 5; i++)
                 {
-                    Bullet(20f, true, "Shotgun");
+                    Bullet(20f, 40f, true, "Shotgun");
                 }
                 break;
             }
@@ -100,7 +106,7 @@ public class Shooting : MonoBehaviour
             case FireMode.BURST:
             {
                 canBurst = true;
-                fireRate = .5f;
+                fireRate = 0.5f;
                 if (canBurst)
                     StartCoroutine(BurstFire());
                 break;
@@ -108,8 +114,22 @@ public class Shooting : MonoBehaviour
 
             case FireMode.RPG:
             {
-                fireRate = 1.5f;
+                fireRate = 1f;
                 Rocket();
+                break;
+            }
+
+            case FireMode.AUTO:
+            {
+                fireRate = 0.1f;
+                Bullet(35f, 20f, false, "Auto");
+                break;
+            }
+
+            case FireMode.BRR:
+            {
+                fireRate = 0f;
+                Bullet(40f, 1f, false, "Auto");
                 break;
             }
         }
@@ -121,6 +141,7 @@ public class Shooting : MonoBehaviour
     {
         timeSinceLastShot = 0f;
         isFiring = false;
+        fireRate = 0.25f;
         fireMode = FireMode.SEMI;
     }
 
@@ -130,7 +151,7 @@ public class Shooting : MonoBehaviour
         if (treeBehavior.inTrunk)
         {
             arm.GetComponent<SpriteRenderer>().enabled = false;
-            timeSinceLastShot = 0f;
+            timeSinceLastShot = fireRate;
         }
         else
         {

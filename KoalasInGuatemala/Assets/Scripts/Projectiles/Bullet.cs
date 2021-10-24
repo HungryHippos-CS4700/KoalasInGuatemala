@@ -5,10 +5,11 @@ using UnityEngine;
 public class Bullet : Projectile
 {
     [SerializeField] private GameObject fragments;
+    public float damage;
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        ParticleSystem fragment = Instantiate(fragments, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
-        var main = fragment.main;
+        
         if (!collider.CompareTag("Projectile"))
         {
             // if (collider.CompareTag("Enemy"))
@@ -25,22 +26,28 @@ public class Bullet : Projectile
             //     audioManager.Play("Bullet_Collision");
             // }
 
+            ParticleSystem fragment = Instantiate(fragments, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+            var main = fragment.main;
+
             switch(collider.tag)
             {
                 case "Enemy":
                 {
                     main.startColor = Color.red;
                     Enemy enemy = collider.gameObject.GetComponent<Enemy>();
-                    float damage = Random.Range(18, 22);
-                    enemy.TakeDamage(damage);
+                    enemy.TakeDamage(Random.Range(damage - 2f, damage + 2f));
                     audioManager.Play("Enemy_Hit", true);
                     break;
                 }
 
                 case "Trunk":
                 case "BranchTile":
+                case "Branch":
                 {
-                    main.startColor = new Color(Random.Range(0.8f, 0.9f), Random.Range(0.4f, 0.5f), Random.Range(0f, 0.1f));
+                    Color color1 = new Color(0.9f, 0.5f, 0.1f);
+                    Color color2 = new Color(0.6f, 0.2f, 0.1f);
+                    main.startColor = new ParticleSystem.MinMaxGradient(color1, color2);
+                    
                     audioManager.Play("Bullet_Collision");
                     break;
                 }
@@ -51,7 +58,7 @@ public class Bullet : Projectile
                     break;
                 }
             }
-            Destroy(fragment.gameObject, 1f);
+            Destroy(fragment.gameObject, 0.5f);
             Destroy(gameObject);
         }
     }
