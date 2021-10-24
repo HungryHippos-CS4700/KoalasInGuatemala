@@ -8,29 +8,33 @@ public class Shooting : MonoBehaviour
         SEMI,
         SPREAD,
         BURST,
-        LASER
+        RPG
     }
     [SerializeField] private Animator animator;
     [SerializeField] private TreeBehavior treeBehavior;
     [SerializeField] private GameObject arm;
     [SerializeField] private Sprite[] gunSprites;
     [SerializeField] private FireMode fireMode;
-    [SerializeField] private Bullet bullet;
     [SerializeField] private Transform firePoint;
     [SerializeField] private AudioManager audioManager;
     [SerializeField] private float fireRate;
     [SerializeField] private float timeSinceLastShot;
     [SerializeField] private float cameraShakeOffset;
     [SerializeField] private bool isFiring;
+
+    // Projectile types
+    [SerializeField] private Bullet bullet;
+    [SerializeField] private Rocket rocket;
+
     private Vector2 lookDirection;
     private float lookAngle;
     private bool canBurst;
 
-    private void DisableBulletCollisionWithPlayer(Bullet bullet)
+    private void DisableBulletCollisionWithPlayer(Projectile projectile)
     {
-        BoxCollider2D bulletCollider = bullet.GetComponent<BoxCollider2D>();
+        BoxCollider2D projectileCollider = projectile.GetComponent<BoxCollider2D>();
         BoxCollider2D playerCollider = GetComponent<BoxCollider2D>();
-        Physics2D.IgnoreCollision(bulletCollider, playerCollider);
+        Physics2D.IgnoreCollision(projectileCollider, playerCollider);
     }
 
     private IEnumerator BurstFire()
@@ -39,47 +43,56 @@ public class Shooting : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             audioManager.Play("Auto");
-            ShootingDefaults();
-            Bullet bulletClone = Instantiate(bullet, firePoint.position, Quaternion.Euler(0f, 0f, lookAngle));
-            bulletClone.speed = 30f;
-            DisableBulletCollisionWithPlayer(bulletClone);
+            Bullet(30f, false, "Auto");
             yield return new WaitForSeconds(.1f);
         }
         canBurst = true;
     }
 
     // Everything to be done when a bullet is fired
-    private void ShootingDefaults()
+    private void Bullet(float speed, bool spread, string audio)
     {
         Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + Random.Range(-cameraShakeOffset, cameraShakeOffset), Camera.main.transform.position.y + Random.Range(-cameraShakeOffset, cameraShakeOffset), -10f);
+        audioManager.Play(audio);
+        Bullet bulletClone;
+        if (spread)
+        {
+            bulletClone = Instantiate(bullet, firePoint.position, Quaternion.Euler(0f, 0f, Random.Range(lookAngle - 10, lookAngle + 10)));
+        }
+        else
+        {
+            bulletClone = Instantiate(bullet, firePoint.position, Quaternion.Euler(0f, 0f, lookAngle));
+        }
+        bulletClone.speed = speed;
     }
+
+    private void Rocket()
+    {
+        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + Random.Range(-cameraShakeOffset-.2f, cameraShakeOffset+.2f), Camera.main.transform.position.y + Random.Range(-cameraShakeOffset-.1f, cameraShakeOffset+.1f), -10f);
+        audioManager.Play("RPG");
+        Rocket rocketClone;
+        rocketClone = Instantiate(rocket, firePoint.position, Quaternion.Euler(0f, 0f, lookAngle));
+        rocketClone.speed = 20f;
+    }
+
     // Fire gun
     private void Fire()
     {
-        
         switch (fireMode)
         {
             case FireMode.SEMI:
             {
-                audioManager.Play("Pistol");
-                ShootingDefaults();
                 fireRate = .25f;
-                Bullet bulletClone = Instantiate(bullet, firePoint.position, Quaternion.Euler(0f, 0f, lookAngle));
-                bulletClone.speed = 30f;
-                DisableBulletCollisionWithPlayer(bulletClone);
+                Bullet(30f, false, "Pistol");
                 break;
             }
 
             case FireMode.SPREAD:
             {
-                audioManager.Play("Shotgun");
-                ShootingDefaults();
                 fireRate = 1f;
                 for (int i = 0; i < 5; i++)
                 {
-                    Bullet bulletClone = Instantiate(bullet, firePoint.position, Quaternion.Euler(0f, 0f, Random.Range(lookAngle - 10, lookAngle + 10)));
-                    bulletClone.speed = 20f;
-                    DisableBulletCollisionWithPlayer(bulletClone);
+                    Bullet(20f, true, "Shotgun");
                 }
                 break;
             }
@@ -93,12 +106,10 @@ public class Shooting : MonoBehaviour
                 break;
             }
 
-            case FireMode.LASER:
+            case FireMode.RPG:
             {
-                fireRate = .05f;
-                Bullet bulletClone = Instantiate(bullet, firePoint.position, Quaternion.Euler(0f, 0f, lookAngle));
-                bulletClone.speed = 30f;
-                DisableBulletCollisionWithPlayer(bulletClone);
+                fireRate = 1.5f;
+                Rocket();
                 break;
             }
         }
@@ -119,6 +130,7 @@ public class Shooting : MonoBehaviour
         if (treeBehavior.inTrunk)
         {
             arm.GetComponent<SpriteRenderer>().enabled = false;
+            timeSinceLastShot = 0f;
         }
         else
         {

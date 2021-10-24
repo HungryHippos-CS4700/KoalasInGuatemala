@@ -5,7 +5,7 @@ using UnityEngine;
 public class TreeBehavior : MonoBehaviour
 {
     public bool inTrunk;
-    [SerializeField] private BoxCollider2D[] branchColliders;
+    [SerializeField] private EdgeCollider2D[] branchColliders;
     [SerializeField] private GameObject leaf;
     [SerializeField] private GameObject currentPlatform;
     private BoxCollider2D playerCollider;
@@ -39,9 +39,9 @@ public class TreeBehavior : MonoBehaviour
 
     private IEnumerator DisableCollision()
     {
-        BoxCollider2D platformCollider = currentPlatform.GetComponent<BoxCollider2D>();
+        EdgeCollider2D platformCollider = currentPlatform.GetComponent<EdgeCollider2D>();
         Physics2D.IgnoreCollision(playerCollider, platformCollider);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(0.5f);
         Physics2D.IgnoreCollision(playerCollider, platformCollider, false);
     }
 
@@ -66,7 +66,7 @@ public class TreeBehavior : MonoBehaviour
         if (collider.CompareTag("Trunk"))
         {
             inTrunk = true;
-            foreach (BoxCollider2D branchCollider in branchColliders)
+            foreach (EdgeCollider2D branchCollider in branchColliders)
             {
                 BoxCollider2D playerCollider = GetComponent<BoxCollider2D>();
                 Physics2D.IgnoreCollision(branchCollider, playerCollider);
@@ -79,7 +79,7 @@ public class TreeBehavior : MonoBehaviour
         if (collider.CompareTag("Trunk"))
         {
             inTrunk = false;
-            foreach (BoxCollider2D branchCollider in branchColliders)
+            foreach (EdgeCollider2D branchCollider in branchColliders)
             {
                 BoxCollider2D playerCollider = GetComponent<BoxCollider2D>();
                 Physics2D.IgnoreCollision(branchCollider, playerCollider, false);

@@ -45,11 +45,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Effects
-    uniqueID: 682194449
+  - name: Tree
+    uniqueID: 2191207555
     locked: 0
   - name: Player
     uniqueID: 1092930017
+    locked: 0
+  - name: Leaves
+    uniqueID: 4187147141
+    locked: 0
+  - name: Effects
+    uniqueID: 682194449
     locked: 0
   - name: HealthBar
     uniqueID: 1982220603
