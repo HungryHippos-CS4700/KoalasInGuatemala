@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private AudioManager audioManager;
     [SerializeField] private Vector3 offset;
     [SerializeField] private float speed;
+    [SerializeField] private Score score;
     private Rigidbody2D rb;
 
     void Start()
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour
         audioManager = FindObjectOfType<AudioManager>();
         rb = GetComponent<Rigidbody2D>();
         healthBar.SetHealth(health, maxHealth);
+        score = FindObjectOfType<Score>();
     }
 
     void Update()
@@ -25,7 +27,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             // add check: if the enemy is an owl
-            Score.addScore(500);
+            score.addScore(500);
             audioManager.Play("Enemy_Death");
             Object.Destroy(gameObject);
         }
@@ -36,7 +38,6 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
         healthBar.SetHealth(health, maxHealth);
-        // putting it here only adds 50 (compared to 100 in Bullet.cs)
-        Score.addScore(50);
+        score.addScore(50);
     }
 }
