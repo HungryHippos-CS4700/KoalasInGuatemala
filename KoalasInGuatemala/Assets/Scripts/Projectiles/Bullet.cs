@@ -36,6 +36,8 @@ public class Bullet : Projectile
                     main.startColor = Color.red;
                     Enemy enemy = collider.gameObject.GetComponent<Enemy>();
                     enemy.TakeDamage(Random.Range(damage - 2f, damage + 2f));
+                    // putting this here adds 100 instead of 50?
+                    // Score.addScore(50f);
                     audioManager.Play("Enemy_Hit", true);
                     break;
                 }

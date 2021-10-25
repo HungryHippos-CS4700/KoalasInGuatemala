@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour
         healthBar.transform.position = transform.position + offset;
         if (health <= 0)
         {
+            // add check: if the enemy is an owl
+            Score.addScore(500);
             audioManager.Play("Enemy_Death");
             Object.Destroy(gameObject);
         }
@@ -34,5 +36,7 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
         healthBar.SetHealth(health, maxHealth);
+        // putting it here only adds 50 (compared to 100 in Bullet.cs)
+        Score.addScore(50);
     }
 }
