@@ -20,6 +20,16 @@ public class Enemy : MonoBehaviour
         Physics2D.IgnoreCollision(enemyCollider, playerCollider);
     }
 
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        DamageText damageTextGUI = Instantiate(damageText,
+        transform.position + new Vector3(Random.Range(-1f, 1f), damageTextOffset, 0f),
+        Quaternion.Euler(0f, 0f, Random.Range(-20, 20)));
+        damageTextGUI.damage = damage;
+        healthBar.SetHealth(health, maxHealth);
+    }
+    
     void Start()
     {
         DisableBulletCollisionWithPlayer();
@@ -36,15 +46,5 @@ public class Enemy : MonoBehaviour
             Object.Destroy(gameObject);
         }
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, 0f, 5f), 0f);
-    }
-
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        DamageText damageTextGUI = Instantiate(damageText,
-        transform.position + new Vector3(Random.Range(-1f, 1f), damageTextOffset, 0f),
-        Quaternion.Euler(0f, 0f, Random.Range(-20, 20)));
-        damageTextGUI.damage = damage;
-        healthBar.SetHealth(health, maxHealth);
     }
 }

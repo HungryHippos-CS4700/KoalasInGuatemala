@@ -38,7 +38,7 @@ public class Shooting : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             audioManager.Play("Auto");
-            Bullet(30f, 30, false, "Auto");
+            Bullet(80f, 30, false, "Auto");
             yield return new WaitForSeconds(.1f);
         }
         canBurst = true;
@@ -82,7 +82,7 @@ public class Shooting : MonoBehaviour
             {
                 
                 fireRate = 4f;
-                Bullet(30f, 30, false, "Pistol");
+                Bullet(80f, 30, false, "Pistol");
                 break;
             }
 
@@ -91,7 +91,7 @@ public class Shooting : MonoBehaviour
                 fireRate = 1f;
                 for (int i = 0; i < 5; i++)
                 {
-                    Bullet(20f, 40, true, "Shotgun");
+                    Bullet(50f, 40, true, "Shotgun");
                 }
                 break;
             }
@@ -115,7 +115,7 @@ public class Shooting : MonoBehaviour
             case FireMode.AUTO:
             {
                 fireRate = 10f;
-                Bullet(35f, 20, false, "Auto");
+                Bullet(80f, 20, false, "Auto");
                 break;
             }
 
@@ -144,6 +144,7 @@ public class Shooting : MonoBehaviour
         if (treeBehavior.inTrunk)
         {
             arm.GetComponent<SpriteRenderer>().enabled = false;
+            isFiring = false;
         }
         else
         {
