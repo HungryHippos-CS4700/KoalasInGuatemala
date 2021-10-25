@@ -20,7 +20,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private AudioManager audioManager;
     [SerializeField] private float fireRate;
-    [SerializeField] private float timeSinceLastShot;
+    [SerializeField] private float nextFire;
     [SerializeField] private float cameraShakeOffset;
     [SerializeField] private bool isFiring;
 
@@ -88,7 +88,7 @@ public class Shooting : MonoBehaviour
             case FireMode.SEMI:
             {
                 
-                fireRate = 0.25f;
+                fireRate = 4f;
                 Bullet(30f, 30f, false, "Pistol");
                 break;
             }
@@ -106,7 +106,7 @@ public class Shooting : MonoBehaviour
             case FireMode.BURST:
             {
                 canBurst = true;
-                fireRate = 0.5f;
+                fireRate = 2f;
                 if (canBurst)
                     StartCoroutine(BurstFire());
                 break;
@@ -121,27 +121,27 @@ public class Shooting : MonoBehaviour
 
             case FireMode.AUTO:
             {
-                fireRate = 0.1f;
+                fireRate = 10f;
                 Bullet(35f, 20f, false, "Auto");
                 break;
             }
 
             case FireMode.BRR:
             {
-                fireRate = 0f;
+                fireRate = 100f;
                 Bullet(40f, 1f, false, "Auto");
                 break;
             }
         }
-        timeSinceLastShot = 0f;
+        nextFire = Time.time + 1f/fireRate;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        timeSinceLastShot = 0f;
         isFiring = false;
         fireRate = 0.25f;
+        nextFire = Time.time + fireRate;
         fireMode = FireMode.SEMI;
     }
 
@@ -151,7 +151,7 @@ public class Shooting : MonoBehaviour
         if (treeBehavior.inTrunk)
         {
             arm.GetComponent<SpriteRenderer>().enabled = false;
-            timeSinceLastShot = fireRate;
+            nextFire = Time.time + 1f/fireRate;
         }
         else
         {
@@ -179,16 +179,12 @@ public class Shooting : MonoBehaviour
         {
             isFiring = !isFiring;
         }
-        if (timeSinceLastShot >= fireRate)
+        if (Time.time > nextFire)
         {
             if (isFiring && !treeBehavior.inTrunk)
             {
                 Fire();
             }
-        }
-        else
-        {
-            timeSinceLastShot += Time.deltaTime;
         }
     }
 }
