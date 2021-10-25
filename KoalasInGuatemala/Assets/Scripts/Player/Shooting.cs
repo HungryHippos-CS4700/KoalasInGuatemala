@@ -32,30 +32,23 @@ public class Shooting : MonoBehaviour
     private float lookAngle;
     private bool canBurst;
 
-    private void DisableBulletCollisionWithPlayer(Projectile projectile)
-    {
-        BoxCollider2D projectileCollider = projectile.GetComponent<BoxCollider2D>();
-        BoxCollider2D playerCollider = GetComponent<BoxCollider2D>();
-        Physics2D.IgnoreCollision(projectileCollider, playerCollider);
-    }
-
     private IEnumerator BurstFire()
     {
         canBurst= false;
         for (int i = 0; i < 3; i++)
         {
             audioManager.Play("Auto");
-            Bullet(30f, 30f, false, "Auto");
+            Bullet(30f, 30, false, "Auto");
             yield return new WaitForSeconds(.1f);
         }
         canBurst = true;
     }
 
     // Everything to be done when a bullet is fired
-    private void Bullet(float speed, float damage, bool spread, string audio)
+    private void Bullet(float speed, int damage, bool spread, string audio)
     {
         Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + Random.Range(-cameraShakeOffset, cameraShakeOffset),
-                                                    Camera.main.transform.position.y + Random.Range(-cameraShakeOffset, cameraShakeOffset), -10f);
+        Camera.main.transform.position.y + Random.Range(-cameraShakeOffset, cameraShakeOffset), -10f);
         audioManager.Play(audio);
         Bullet bulletClone;
         if (spread)
@@ -73,7 +66,7 @@ public class Shooting : MonoBehaviour
     private void Rocket()
     {
         Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + Random.Range(-cameraShakeOffset-.2f, cameraShakeOffset+.2f),
-                                                    Camera.main.transform.position.y + Random.Range(-cameraShakeOffset-.2f, cameraShakeOffset+.2f), -10f);
+        Camera.main.transform.position.y + Random.Range(-cameraShakeOffset-.2f, cameraShakeOffset+.2f), -10f);
         audioManager.Play("RPG");
         Rocket rocketClone;
         rocketClone = Instantiate(rocket, firePoint.position, Quaternion.Euler(0f, 0f, lookAngle));
@@ -89,7 +82,7 @@ public class Shooting : MonoBehaviour
             {
                 
                 fireRate = 4f;
-                Bullet(30f, 30f, false, "Pistol");
+                Bullet(30f, 30, false, "Pistol");
                 break;
             }
 
@@ -98,7 +91,7 @@ public class Shooting : MonoBehaviour
                 fireRate = 1f;
                 for (int i = 0; i < 5; i++)
                 {
-                    Bullet(20f, 40f, true, "Shotgun");
+                    Bullet(20f, 40, true, "Shotgun");
                 }
                 break;
             }
@@ -122,14 +115,14 @@ public class Shooting : MonoBehaviour
             case FireMode.AUTO:
             {
                 fireRate = 10f;
-                Bullet(35f, 20f, false, "Auto");
+                Bullet(35f, 20, false, "Auto");
                 break;
             }
 
             case FireMode.BRR:
             {
                 fireRate = 100f;
-                Bullet(40f, 1f, false, "Auto");
+                Bullet(40f, 1, false, "Auto");
                 break;
             }
         }
@@ -151,7 +144,6 @@ public class Shooting : MonoBehaviour
         if (treeBehavior.inTrunk)
         {
             arm.GetComponent<SpriteRenderer>().enabled = false;
-            nextFire = Time.time + 1f/fireRate;
         }
         else
         {
@@ -160,7 +152,7 @@ public class Shooting : MonoBehaviour
         arm.GetComponent<SpriteRenderer>().sprite = gunSprites[(int)fireMode];
         lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - new Vector3(transform.position.x, transform.position.y);
         lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        if ((lookAngle > 90 || lookAngle < -90) && !treeBehavior.inTrunk)
+        if ((lookAngle > 90 || lookAngle < -90))
         {
             animator.SetBool("FacingRight", false);
             GetComponent<SpriteRenderer>().flipX = true;

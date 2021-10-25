@@ -95,7 +95,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128489322534247253}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -118,12 +118,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.1875, y: -0.25}
   serializedVersion: 2
-  m_Radius: 0.75
+  m_Radius: 1.5
 --- !u!95 &128489322534247252
 Animator:
   serializedVersion: 3
@@ -159,8 +159,9 @@ MonoBehaviour:
   health: 100
   healthBar: {fileID: 3288856968454279049}
   audioManager: {fileID: 0}
-  offset: {x: 0, y: -1.05, z: 0}
-  speed: 1
+  damageText: {fileID: 7818319922044016141, guid: 873380f01d3fa6442bc13bfbc2f4589c, type: 3}
+  damageTextOffset: 0.5
+  rb: {fileID: 128489322534247249}
 --- !u!1001 &9221379727035750271
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -178,7 +179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3664819081445068050, guid: ac12b7b17ef69a641a3bc68354de4841, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 3664819081445068050, guid: ac12b7b17ef69a641a3bc68354de4841, type: 3}
       propertyPath: m_LocalPosition.z

@@ -94,7 +94,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5738157237910998429}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -149,6 +149,7 @@ MonoBehaviour:
   playerCollider: {fileID: 0}
   speed: 0
   fragments: {fileID: 4877662102560490313, guid: b01525051a1c16844a747c503e7c72b8, type: 3}
+  damage: 0
 --- !u!82 &2227634643171682027
 AudioSource:
   m_ObjectHideFlags: 0

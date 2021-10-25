@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : Projectile
 {
     [SerializeField] private GameObject fragments;
-    public float damage;
+    public int damage;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -35,7 +35,7 @@ public class Bullet : Projectile
                 {
                     main.startColor = Color.red;
                     Enemy enemy = collider.gameObject.GetComponent<Enemy>();
-                    enemy.TakeDamage(Random.Range(damage - 2f, damage + 2f));
+                    enemy.TakeDamage(Random.Range(damage - 2, damage + 2));
                     audioManager.Play("Enemy_Hit", true);
                     break;
                 }
