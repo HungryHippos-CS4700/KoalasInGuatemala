@@ -161,7 +161,6 @@ MonoBehaviour:
   audioManager: {fileID: 0}
   damageText: {fileID: 7818319922044016141, guid: 873380f01d3fa6442bc13bfbc2f4589c, type: 3}
   damageTextOffset: 0.5
-  rb: {fileID: 128489322534247249}
 --- !u!1001 &9221379727035750271
 PrefabInstance:
   m_ObjectHideFlags: 0

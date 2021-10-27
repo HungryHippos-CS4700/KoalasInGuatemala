@@ -23,6 +23,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] private float nextFire;
     [SerializeField] private float cameraShakeOffset;
     [SerializeField] private bool isFiring;
+    private bool canBurst;
 
     // Projectile types
     [SerializeField] private Bullet bullet;
@@ -30,8 +31,7 @@ public class Shooting : MonoBehaviour
 
     private Vector2 lookDirection;
     private float lookAngle;
-    private bool canBurst;
-
+    
     private IEnumerator BurstFire()
     {
         canBurst= false;
@@ -39,12 +39,11 @@ public class Shooting : MonoBehaviour
         {
             audioManager.Play("Auto");
             Bullet(80f, 30, false, "Auto");
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.075f);
         }
         canBurst = true;
     }
 
-    // Everything to be done when a bullet is fired
     private void Bullet(float speed, int damage, bool spread, string audio)
     {
         Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + Random.Range(-cameraShakeOffset, cameraShakeOffset),
@@ -80,7 +79,6 @@ public class Shooting : MonoBehaviour
         {
             case FireMode.SEMI:
             {
-                
                 fireRate = 4f;
                 Bullet(80f, 30, false, "Pistol");
                 break;
@@ -114,15 +112,15 @@ public class Shooting : MonoBehaviour
 
             case FireMode.AUTO:
             {
-                fireRate = 10f;
-                Bullet(80f, 20, false, "Auto");
+                fireRate = 12f;
+                Bullet(80f, 30, false, "Auto");
                 break;
             }
 
             case FireMode.BRR:
             {
                 fireRate = 100f;
-                Bullet(40f, 1, false, "Auto");
+                Bullet(40f, 6, false, "Auto");
                 break;
             }
         }
