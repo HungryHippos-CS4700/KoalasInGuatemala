@@ -18,10 +18,9 @@ public class PlayerController : MonoBehaviour
     {
         for(int i = 0; i < 5; i++)
         {
-            Enemy newOwl = Instantiate(owl, new Vector2(Random.Range(-3f, 3f), Random.Range(-4f, 4f)), Quaternion.identity);
+            Enemy newOwl = Instantiate(owl, new Vector2(Random.Range(-20f, 10f), Random.Range(-4f, 4f)), Quaternion.identity);
         }
         rb = GetComponent<Rigidbody2D>();
-        treeBehavior.inTrunk = false;
     }
 
     // Update is called once per frame
@@ -38,7 +37,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            rb.gravityScale = 1f;
+            rb.gravityScale = 3f;
             animator.SetBool("IsClimbing", false);
         }
     }

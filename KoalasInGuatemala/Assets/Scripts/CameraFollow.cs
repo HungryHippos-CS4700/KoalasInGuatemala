@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public float dampTime = 0.1f;
+    [SerializeField] private float dampTime;
     private Vector3 offset = new Vector3(0f, 0f, -10f);
     private Vector3 velocity = Vector3.zero;
-    public Transform target;
+    [SerializeField] private Transform target;
 
     // Update is called once per frame
     void Update () 
