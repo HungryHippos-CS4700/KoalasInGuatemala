@@ -5,27 +5,13 @@ using UnityEngine;
 public class Bullet : Projectile
 {
     [SerializeField] private GameObject fragments;
-    public float damage;
+    [SerializeField] private GameObject leaves;
+    public int damage;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        
         if (!collider.CompareTag("Projectile"))
         {
-            // if (collider.CompareTag("Enemy"))
-            // {
-            //     main.startColor = Color.red;
-            //     Enemy enemy = collider.gameObject.GetComponent<Enemy>();
-            //     float damage = Random.Range(18, 22);
-            //     enemy.TakeDamage(damage);
-            //     audioManager.Play("Enemy_Hit", true);
-            // }
-            // else if (collider.CompareTag("Trunk") || collider.CompareTag("Branch"))
-            // {
-
-            //     audioManager.Play("Bullet_Collision");
-            // }
-
             ParticleSystem fragment = Instantiate(fragments, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
             var main = fragment.main;
 
@@ -35,7 +21,7 @@ public class Bullet : Projectile
                 {
                     main.startColor = Color.red;
                     Enemy enemy = collider.gameObject.GetComponent<Enemy>();
-                    enemy.TakeDamage(Random.Range(damage - 2f, damage + 2f));
+                    enemy.TakeDamage(Random.Range(damage - 2, damage + 2));
                     audioManager.Play("Enemy_Hit", true);
                     break;
                 }

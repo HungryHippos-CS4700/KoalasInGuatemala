@@ -9,6 +9,7 @@ public class FPS : MonoBehaviour
 
     void Start()
     {
+        // Application.targetFrameRate = 60;
         timeSinceLastRefresh = 0;
     }
 

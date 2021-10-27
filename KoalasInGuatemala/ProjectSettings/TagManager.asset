@@ -5,11 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Branch
-  - Bullet
   - Trunk
   - Enemy
   - Projectile
   - BranchTile
+  - Leaves
   layers:
   - Default
   - TransparentFX

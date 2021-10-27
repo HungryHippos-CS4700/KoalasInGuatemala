@@ -11,10 +11,31 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Vector3 offset;
     [SerializeField] private float speed;
     [SerializeField] private Score score;
+    [SerializeField] private DamageText damageText;
+    [SerializeField] private float damageTextOffset;
     private Rigidbody2D rb;
 
+    private void DisableBulletCollisionWithPlayer()
+    {
+        PlayerController player = FindObjectOfType<PlayerController>();
+        Collider2D enemyCollider = GetComponent<Collider2D>();
+        BoxCollider2D playerCollider = player.GetComponent<BoxCollider2D>();
+        Physics2D.IgnoreCollision(enemyCollider, playerCollider);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        DamageText damageTextGUI = Instantiate(damageText,
+        transform.position + new Vector3(Random.Range(-1f, 1f), damageTextOffset, 0f),
+        Quaternion.Euler(0f, 0f, Random.Range(-20, 20)));
+        damageTextGUI.damage = damage;
+        healthBar.SetHealth(health, maxHealth);
+    }
+    
     void Start()
     {
+        DisableBulletCollisionWithPlayer();
         audioManager = FindObjectOfType<AudioManager>();
         rb = GetComponent<Rigidbody2D>();
         healthBar.SetHealth(health, maxHealth);
@@ -23,7 +44,6 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        healthBar.transform.position = transform.position + offset;
         if (health <= 0)
         {
             // add check: if the enemy is an owl
@@ -31,13 +51,6 @@ public class Enemy : MonoBehaviour
             audioManager.Play("Enemy_Death");
             Object.Destroy(gameObject);
         }
-        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, 0f, 5f), 0);
-    }
-
-    public void TakeDamage(float damage)
-    {
-        health -= damage;
-        healthBar.SetHealth(health, maxHealth);
-        score.addScore(50);
+        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, 0f, 5f), 0f);
     }
 }
