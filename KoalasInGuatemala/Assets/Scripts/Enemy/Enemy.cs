@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour
         Quaternion.Euler(0f, 0f, Random.Range(-20, 20)));
         damageTextGUI.damage = damage;
         healthBar.SetHealth(health, maxHealth);
+        score.addScore(50);
     }
     
     void Start()
