@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4296848973200263589}
   - component: {fileID: 6233172442225860680}
   - component: {fileID: 927876054881710762}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rocket
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1092930017
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7fa7c5392bd44404cbe34d45387002ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -146,7 +146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioManager: {fileID: 0}
-  playerCollider: {fileID: 0}
   speed: 0
   explosion: {fileID: 4785321364579565651, guid: d197f412b24511a4d884c22109987b3b, type: 3}
   rocketSmoke: {fileID: 4711772969807177584}
@@ -157,9 +156,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2455016700174855132}
     m_Modifications:
+    - target: {fileID: 3179327995402891396, guid: 66e2c36d55b68304dadc6f6aeb4588f9, type: 3}
+      propertyPath: m_SortingLayer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3179327995402891396, guid: 66e2c36d55b68304dadc6f6aeb4588f9, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 682194449
+      objectReference: {fileID: 0}
     - target: {fileID: 6165392255393740772, guid: 66e2c36d55b68304dadc6f6aeb4588f9, type: 3}
       propertyPath: m_Name
       value: RocketSmoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 6165392255393740772, guid: 66e2c36d55b68304dadc6f6aeb4588f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6420331070833382537, guid: 66e2c36d55b68304dadc6f6aeb4588f9, type: 3}
       propertyPath: m_RootOrder

@@ -8,22 +8,15 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private TreeBehavior treeBehavior;
     [SerializeField] private float speed;
-    [SerializeField] private Enemy owl;
     private float inputHorizontal;
     private float inputVertical;
     public Animator animator;
 
-    // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < 5; i++)
-        {
-            Enemy newOwl = Instantiate(owl, new Vector2(Random.Range(-20f, 10f), Random.Range(-4f, 4f)), Quaternion.identity);
-        }
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Movement input

@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
         Quaternion.Euler(0f, 0f, Random.Range(-20, 20)));
         damageTextGUI.damage = damage;
         healthBar.SetHealth(health, maxHealth);
-        score.addScore(50);
+        score.AddScore(50);
     }
     
     void Start()
@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             // add check: if the enemy is an owl
-            score.addScore(500);
+            score.AddScore(500);
             audioManager.Play("Enemy_Death");
             Object.Destroy(gameObject);
         }

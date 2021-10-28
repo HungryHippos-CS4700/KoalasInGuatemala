@@ -10,18 +10,13 @@ public class TreeBehavior : MonoBehaviour
     [SerializeField] private GameObject currentPlatform;
     private BoxCollider2D playerCollider;
     private bool onBranch;
-    private float distance;
     private float inputHorizontal;
-    private float playerHeight;
 
-    // Start is called before the first frame update
     void Start()
     {
         inTrunk = false;
         playerCollider = GetComponent<BoxCollider2D>();
         onBranch = false;
-        distance = 0.1f;
-        playerHeight = playerCollider.size.y * transform.localScale.y;
     }
 
     private IEnumerator CreateLeafTrail()
@@ -49,6 +44,7 @@ public class TreeBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Branch"))
         {
+            onBranch = true;
             currentPlatform = collision.gameObject;
         }
     }
@@ -57,6 +53,7 @@ public class TreeBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Branch"))
         {
+            onBranch = false;
             currentPlatform = null;
         }
     }
@@ -87,7 +84,6 @@ public class TreeBehavior : MonoBehaviour
         }
     }
     
-    // Update is called once per frame
     void Update()
     {
         if(inTrunk)
@@ -95,16 +91,6 @@ public class TreeBehavior : MonoBehaviour
             currentPlatform = null;
         }
         inputHorizontal = Input.GetAxisRaw("Horizontal");
-        
-        RaycastHit2D hitInfo = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - (playerHeight/2) - .1f), Vector2.down, distance);
-        if (hitInfo.collider != null && hitInfo.collider.CompareTag("Branch"))
-        {
-            onBranch = true;
-        }
-        else
-        {
-            onBranch = false;
-        }
 
         if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)) && onBranch)
         {

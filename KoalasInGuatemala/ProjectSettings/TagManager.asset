@@ -9,7 +9,7 @@ TagManager:
   - Enemy
   - Projectile
   - BranchTile
-  - Leaves
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -17,10 +17,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Player Ignore
+  - Projectile
+  - NPC and Proj Ignore
   - 
   - 
   - 
@@ -47,17 +47,26 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 2695167159
+    locked: 0
   - name: Tree
     uniqueID: 2191207555
     locked: 0
   - name: Player
     uniqueID: 1092930017
     locked: 0
-  - name: Leaves
-    uniqueID: 4187147141
+  - name: Foreground
+    uniqueID: 4118885791
+    locked: 0
+  - name: Ground
+    uniqueID: 2238108237
     locked: 0
   - name: Effects
     uniqueID: 682194449
+    locked: 0
+  - name: Leaves
+    uniqueID: 4187147141
     locked: 0
   - name: HealthBar
     uniqueID: 1982220603

@@ -9,7 +9,7 @@ public class Score : MonoBehaviour
     public int scoreValue;
     [SerializeField] private Text scoreText;
 
-    public void addScore(int points)
+    public void AddScore(int points)
     {
         scoreValue += points;
         scoreText.text = "Score: " + scoreValue;

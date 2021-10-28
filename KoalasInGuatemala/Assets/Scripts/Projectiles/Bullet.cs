@@ -37,6 +37,16 @@ public class Bullet : Projectile
                     audioManager.Play("Bullet_Collision");
                     break;
                 }
+                
+                case "Ground":
+                {
+                    Color color1 = new Color(0.4f, 0.7f, 0.1f);
+                    Color color2 = new Color(0.6f, 0.9f, 0.3f);
+                    main.startColor = new ParticleSystem.MinMaxGradient(color1, color2);
+                    
+                    audioManager.Play("Bullet_Collision");
+                    break;
+                }
 
                 default:
                 {
