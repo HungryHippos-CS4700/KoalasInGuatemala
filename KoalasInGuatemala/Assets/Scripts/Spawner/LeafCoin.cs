@@ -13,7 +13,7 @@ public class LeafCoin : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
-            score.addScore(1000);
+            score.AddScore(1000);
         }
     }
 
