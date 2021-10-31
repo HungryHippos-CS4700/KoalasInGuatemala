@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    enum FireMode {
+    public enum FireMode {
         SEMI,
         SPREAD,
         BURST,
@@ -12,11 +12,11 @@ public class Shooting : MonoBehaviour
         AUTO,
         BRR
     }
+    public FireMode fireMode;
     [SerializeField] private Animator animator;
     [SerializeField] private TreeBehavior treeBehavior;
     [SerializeField] private GameObject arm;
     [SerializeField] private Sprite[] gunSprites;
-    [SerializeField] private FireMode fireMode;
     [SerializeField] private Transform firePoint;
     [SerializeField] private AudioManager audioManager;
     [SerializeField] private float fireRate;

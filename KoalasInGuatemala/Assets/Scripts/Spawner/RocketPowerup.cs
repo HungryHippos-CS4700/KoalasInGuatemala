@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeafCoin : MonoBehaviour
+public class RocketPowerup : MonoBehaviour
 {
-    [SerializeField] private Score score;
     [SerializeField] private SpawnLocation[] spawnLocations;
     [SerializeField] private float rotationsPerMinute;
     public int spawnLocationIndex;
@@ -13,9 +12,10 @@ public class LeafCoin : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            score.AddScore(1000);
-            Destroy(gameObject);
+            Shooting shooting = FindObjectOfType<Shooting>();
+            shooting.fireMode = Shooting.FireMode.RPG;
             spawnLocations[spawnLocationIndex].isSpawned = false;
+            Destroy(gameObject);
         }
     }
 
@@ -23,7 +23,6 @@ public class LeafCoin : MonoBehaviour
     void Start()
     {
         spawnLocations = FindObjectOfType<ItemSpawner>().spawnLocations;
-        score = FindObjectOfType<Score>();
     }
 
     // Update is called once per frame

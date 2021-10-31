@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9213314820685500195}
   - component: {fileID: 4095455696195497630}
   - component: {fileID: 5835713362431977289}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Leaf Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,4 +113,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 0}
+  spawnLocations: []
   rotationsPerMinute: 10
+  spawnLocationIndex: 0
