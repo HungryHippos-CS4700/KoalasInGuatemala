@@ -54,7 +54,7 @@ public class ItemSpawner : MonoBehaviour
     }
 
     void SpawnPowerup() {
-        if (score.scoreValue > pointsNeededForPowerup)
+        if (score.scoreValue >= pointsNeededForPowerup)
         {
             pointsNeededForPowerup += pointsNeededForPowerup;
 

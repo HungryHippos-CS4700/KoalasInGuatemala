@@ -8,9 +8,9 @@ public class RocketPowerup : MonoBehaviour
     [SerializeField] private float rotationsPerMinute;
     public int spawnLocationIndex;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (collider.gameObject.CompareTag("Player"))
         {
             Shooting shooting = FindObjectOfType<Shooting>();
             shooting.fireMode = Shooting.FireMode.RPG;

@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: []
-  rotationsPerMinute: 0
+  rotationsPerMinute: 60
   spawnLocationIndex: 0
 --- !u!61 &-5994727328526220825
 BoxCollider2D:
