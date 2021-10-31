@@ -8,7 +8,8 @@ public class IgnoreCollisions : MonoBehaviour
 
     void Start()
     {
-        // print(layerToIgnore.value);
+        print(layerToIgnore.value);
+        print((int)layerToIgnore);
         Physics2D.IgnoreLayerCollision(gameObject.layer, 7);
     }
 }
