@@ -17,12 +17,6 @@ public class OwlBehavior : MonoBehaviour
         }
     }
 
-    private IEnumerator test()
-    {
-        yield return new WaitForSeconds(1f);
-        rb.velocity = new Vector2(-1000f, 0);
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +28,6 @@ public class OwlBehavior : MonoBehaviour
         else
         {
             rb.velocity = new Vector2(-2f, 0f);
-            // StartCoroutine(test());
             
         }
 
