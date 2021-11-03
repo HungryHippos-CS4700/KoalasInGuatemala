@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 128489322534247251}
   - component: {fileID: 128489322534247248}
-  - component: {fileID: 128489322534247249}
+  - component: {fileID: -5934818924456329188}
   - component: {fileID: 128489322534247254}
   - component: {fileID: 128489322534247252}
   - component: {fileID: 5179131462972399034}
+  - component: {fileID: -4849921177378813108}
   m_Layer: 0
   m_Name: Owl
   m_TagString: Enemy
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1092930017
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4ab1ef45ae6a4c546834ad5cf0599a77, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -87,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &128489322534247249
+--- !u!50 &-5934818924456329188
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -159,8 +160,24 @@ MonoBehaviour:
   health: 100
   healthBar: {fileID: 3288856968454279049}
   audioManager: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
+  speed: 0
+  score: {fileID: 0}
   damageText: {fileID: 7818319922044016141, guid: 873380f01d3fa6442bc13bfbc2f4589c, type: 3}
   damageTextOffset: 0.5
+--- !u!114 &-4849921177378813108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128489322534247253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c3fa827fe4feb409b95d7e56269831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
 --- !u!1001 &9221379727035750271
 PrefabInstance:
   m_ObjectHideFlags: 0
