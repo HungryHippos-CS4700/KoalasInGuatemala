@@ -52,6 +52,5 @@ public class Enemy : MonoBehaviour
             audioManager.Play("Enemy_Death");
             Object.Destroy(gameObject);
         }
-        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, 0f, 5f), 0f);
     }
 }

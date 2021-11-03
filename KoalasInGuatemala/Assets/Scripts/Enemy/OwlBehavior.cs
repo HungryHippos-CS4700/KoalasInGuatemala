@@ -12,7 +12,7 @@ public class OwlBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Trunk") {
-
+            Destroy(gameObject);
         }
     }
 
@@ -32,8 +32,7 @@ public class OwlBehavior : MonoBehaviour
         }
         else
         {
-            // rb.sleepMode = RigidbodySleepMode2D.StartAwake;
-            rb.velocity = new Vector2(1f, 0f);
+            rb.velocity = new Vector2(-2f, 0f);
             // StartCoroutine(test());
             
         }
