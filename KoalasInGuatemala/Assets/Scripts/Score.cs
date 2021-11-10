@@ -6,10 +6,10 @@ using System;
 
 public class Score : MonoBehaviour
 {
-    public int scoreValue;
-    [SerializeField] private Text scoreText;
+    public static int scoreValue;
+    public static Text scoreText;
 
-    public void AddScore(int points)
+    public static void AddScore(int points)
     {
         scoreValue += points;
         scoreText.text = "Score: " + scoreValue;
@@ -18,6 +18,7 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        scoreText = GetComponent<Text>();
         scoreValue = 0;
     }
 }

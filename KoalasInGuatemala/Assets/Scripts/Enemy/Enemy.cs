@@ -10,7 +10,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private AudioManager audioManager;
     [SerializeField] private Vector3 offset;
     [SerializeField] private float speed;
-    [SerializeField] private Score score;
     [SerializeField] private DamageText damageText;
     [SerializeField] private float damageTextOffset;
     private Rigidbody2D rb;
@@ -31,7 +30,7 @@ public class Enemy : MonoBehaviour
         Quaternion.Euler(0f, 0f, Random.Range(-20, 20)));
         damageTextGUI.damage = damage;
         healthBar.SetHealth(health, maxHealth);
-        score.AddScore(50);
+        Score.AddScore(50);
     }
     
     void Start()
@@ -40,7 +39,6 @@ public class Enemy : MonoBehaviour
         audioManager = FindObjectOfType<AudioManager>();
         rb = GetComponent<Rigidbody2D>();
         healthBar.SetHealth(health, maxHealth);
-        score = FindObjectOfType<Score>();
     }
 
     void Update()
@@ -48,7 +46,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             // add check: if the enemy is an owl
-            score.AddScore(500);
+            Score.AddScore(500);
             audioManager.Play("Enemy_Death");
             Object.Destroy(gameObject);
         }

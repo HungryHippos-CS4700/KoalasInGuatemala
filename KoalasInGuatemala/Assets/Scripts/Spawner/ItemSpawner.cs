@@ -7,7 +7,6 @@ public class ItemSpawner : MonoBehaviour
     public SpawnLocation[] spawnLocations;
     [SerializeField] LeafCoin leafCoin;
     [SerializeField] RocketPowerup rocket;
-    [SerializeField] Score score;
     [SerializeField] private float spawnRate;
     private float nextSpawn;
     [SerializeField] private int pointsNeededForPowerup;
@@ -33,7 +32,8 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 
-    void SpawnCoin() {
+    void SpawnCoin()
+    {
         if (Time.time > nextSpawn)
         {
             nextSpawn = Time.time + spawnRate;
@@ -53,8 +53,9 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 
-    void SpawnPowerup() {
-        if (score.scoreValue >= pointsNeededForPowerup)
+    void SpawnPowerup()
+    {
+        if (Score.scoreValue >= pointsNeededForPowerup)
         {
             pointsNeededForPowerup += pointsNeededForPowerup;
 
@@ -76,7 +77,6 @@ public class ItemSpawner : MonoBehaviour
 
     void Start()
     {
-        score = FindObjectOfType<Score>();
     }
     void Update()
     {
