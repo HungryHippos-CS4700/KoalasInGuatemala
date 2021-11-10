@@ -5,25 +5,23 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class TreeHealth : MonoBehaviour
 {
-    public int treeHealth;
-    [SerializeField] private Text treeHealthText;
-    public void TakeDamage(int damage)
-    {
-        treeHealth -= damage;
-        treeHealthText.text = "Health: " + treeHealth;
-    }
+    public static int treeHealth;
+    Text treeHealthText;
+    
     // Start is called before the first frame update
     void Start()
     {
+        treeHealthText = GetComponent<Text>();
         treeHealth = 100;
-        treeHealthText.text = "Health: " + treeHealth;
     }
 
     void Update()
     {
+        treeHealthText.text = "Health: " + treeHealth;
+
+        // Restart game upon getting 0 health
         if (treeHealth <= 0)
         {
-            // Application.LoadLevel(Application.loadedLevel);
             SceneManager.LoadScene("GameScene");
         }
     }

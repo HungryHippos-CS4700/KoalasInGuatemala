@@ -7,13 +7,14 @@ public class OwlBehavior : MonoBehaviour
     // private bool onRight;
     private Rigidbody2D rb;
     [SerializeField] private float speed;
-    [SerializeField] private TreeHealth treeHealth;
     private bool moveLeft;
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Trunk") {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Trunk")
+        {
             Destroy(gameObject);
-            treeHealth.TakeDamage(10);
+            TreeHealth.treeHealth -= 10;
         }
     }
 
@@ -28,10 +29,8 @@ public class OwlBehavior : MonoBehaviour
         else
         {
             rb.velocity = new Vector2(-2f, 0f);
-            
-        }
 
-        treeHealth = FindObjectOfType<TreeHealth>();
+        }
     }
 
     // Update is called once per frame
