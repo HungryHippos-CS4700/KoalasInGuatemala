@@ -170,12 +170,9 @@ public class Shooting : MonoBehaviour
         {
             isFiring = !isFiring;
         }
-        if (Time.time > nextFire)
+        if (Time.time > nextFire && isFiring && !treeBehavior.inTrunk)
         {
-            if (isFiring && !treeBehavior.inTrunk)
-            {
-                Fire();
-            }
+            Fire();
         }
     }
 }

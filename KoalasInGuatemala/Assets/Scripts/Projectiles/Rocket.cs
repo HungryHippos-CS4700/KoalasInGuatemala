@@ -18,7 +18,7 @@ public class Rocket : Projectile
             rocketSmoke.GetComponent<ParticleSystem>().Stop();
             audioManager.Play("RPG_Collision");
             // Instantiate particle and destroy afterwards
-            Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(Instantiate(explosion, transform.position, Quaternion.identity), 2f);
             if (collider.CompareTag("Enemy"))
             {
                 Enemy enemy = collider.GetComponent<Enemy>();
