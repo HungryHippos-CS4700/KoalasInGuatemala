@@ -6,6 +6,7 @@ public class RocketPowerup : MonoBehaviour
 {
     [SerializeField] private SpawnLocation[] spawnLocations;
     [SerializeField] private float rotationsPerMinute;
+    [SerializeField] private GameObject pickUpEffect;
     public int spawnLocationIndex;
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -15,6 +16,7 @@ public class RocketPowerup : MonoBehaviour
             Shooting shooting = FindObjectOfType<Shooting>();
             shooting.fireMode = Shooting.FireMode.RPG;
             spawnLocations[spawnLocationIndex].isSpawned = false;
+            Destroy(Instantiate(pickUpEffect, transform.position, Quaternion.identity), .517f);
             Destroy(gameObject);
         }
     }

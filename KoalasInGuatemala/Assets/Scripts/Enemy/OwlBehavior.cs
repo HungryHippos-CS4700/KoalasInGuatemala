@@ -24,18 +24,12 @@ public class OwlBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if (transform.position.x < 0f)
         {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             rb.velocity = new Vector2(2f, 0f);
         }
         else
         {
             rb.velocity = new Vector2(-2f, 0f);
-
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

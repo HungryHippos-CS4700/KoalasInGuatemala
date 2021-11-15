@@ -8,19 +8,17 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float health;
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private AudioManager audioManager;
-    [SerializeField] private Vector3 offset;
-    [SerializeField] private float speed;
     [SerializeField] private DamageText damageText;
     [SerializeField] private float damageTextOffset;
     private Rigidbody2D rb;
 
-    private void DisableBulletCollisionWithPlayer()
-    {
-        PlayerController player = FindObjectOfType<PlayerController>();
-        Collider2D enemyCollider = GetComponent<Collider2D>();
-        BoxCollider2D playerCollider = player.GetComponent<BoxCollider2D>();
-        Physics2D.IgnoreCollision(enemyCollider, playerCollider);
-    }
+    // private void DisableEnemyCollisionWithPlayer()
+    // {
+    //     PlayerController player = FindObjectOfType<PlayerController>();
+    //     Collider2D enemyCollider = GetComponent<Collider2D>();
+    //     BoxCollider2D playerCollider = player.GetComponent<BoxCollider2D>();
+    //     Physics2D.IgnoreCollision(enemyCollider, playerCollider);
+    // }
 
     public void TakeDamage(int damage)
     {
@@ -35,7 +33,7 @@ public class Enemy : MonoBehaviour
     
     void Start()
     {
-        DisableBulletCollisionWithPlayer();
+        // DisableEnemyCollisionWithPlayer();
         audioManager = FindObjectOfType<AudioManager>();
         rb = GetComponent<Rigidbody2D>();
         healthBar.SetHealth(health, maxHealth);

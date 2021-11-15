@@ -6,6 +6,7 @@ public class LeafCoin : MonoBehaviour
 {
     [SerializeField] private SpawnLocation[] spawnLocations;
     [SerializeField] private float rotationsPerMinute;
+    [SerializeField] private GameObject pickUpEffect;
     public int spawnLocationIndex;
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -13,8 +14,9 @@ public class LeafCoin : MonoBehaviour
         if (collider.gameObject.CompareTag("Player"))
         {
             Score.scoreValue += 1000;
-            Destroy(gameObject);
             spawnLocations[spawnLocationIndex].isSpawned = false;
+            Destroy(Instantiate(pickUpEffect, transform.position, Quaternion.identity), .283f);
+            Destroy(gameObject);
         }
     }
 

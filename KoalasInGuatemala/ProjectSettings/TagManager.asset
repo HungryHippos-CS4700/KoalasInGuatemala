@@ -18,11 +18,11 @@ TagManager:
   - Water
   - UI
   - Player
-  - Player Ignore
+  - Enemy
   - Projectile
-  - NPC and Proj Ignore
-  - 
-  - 
+  - Barrier
+  - IndicatorRadius
+  - Scenery
   - 
   - 
   - 
@@ -47,6 +47,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Parallax
+    uniqueID: 2909579483
+    locked: 0
   - name: Background
     uniqueID: 2695167159
     locked: 0
@@ -62,11 +65,11 @@ TagManager:
   - name: Ground
     uniqueID: 2238108237
     locked: 0
-  - name: Effects
-    uniqueID: 682194449
-    locked: 0
   - name: Leaves
     uniqueID: 4187147141
+    locked: 0
+  - name: Effects
+    uniqueID: 682194449
     locked: 0
   - name: HealthBar
     uniqueID: 1982220603
