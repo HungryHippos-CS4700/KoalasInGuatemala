@@ -62,15 +62,16 @@ public class ItemSpawner : MonoBehaviour
 
     void SpawnPowerup()
     {
-        if (Score.scoreValue >= pointsNeededForPowerup && !shooting.hasPowerUp)
+        if (Score.scoreValue >= pointsNeededForPowerup && !shooting.hasPowerUp && !shooting.powerUpSpawned)
         {
-            pointsNeededForPowerup += pointsNeededForPowerup;
+            pointsNeededForPowerup += 1000;
 
             SpawnLocation location = GetSpawnLocation(true);
             if (location != null)
             {
                 PowerUp powerUpClone = powerUps[Random.Range(0, powerUps.Length)];
                 Instantiate(powerUpClone, location.spawnPoint, Quaternion.identity);
+                shooting.powerUpSpawned = true;
                 powerUpClone.spawnLocationIndex = location.index;
                 location.isSpawned = true;
             }
