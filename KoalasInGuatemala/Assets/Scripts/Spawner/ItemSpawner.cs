@@ -6,12 +6,13 @@ public class ItemSpawner : MonoBehaviour
 {
     public SpawnLocation[] spawnLocations;
     [SerializeField] LeafCoin leafCoin;
-    [SerializeField] RocketPowerup rocket;
+    [SerializeField] private PowerUp[] powerUps;
     [SerializeField] private float spawnRate;
     private float nextSpawn;
     [SerializeField] private int pointsNeededForPowerup;
+    [SerializeField] private Shooting shooting;
 
-    SpawnLocation GetSpawnLocation()
+    SpawnLocation GetSpawnLocation(bool spawnPowerup)
     {
         List<SpawnLocation> availableLocations = new List<SpawnLocation>();
         foreach (SpawnLocation location in spawnLocations)
@@ -21,15 +22,21 @@ public class ItemSpawner : MonoBehaviour
                 availableLocations.Add(location);
             }
         }
-        if (availableLocations.Count != 0)
-        {
-            int index = Random.Range(0, availableLocations.Count);
-            return availableLocations[index];
-        }
-        else
-        {
+        
+        // Limit the number of spawned things
+        if (availableLocations.Count <= 7 && !spawnPowerup) {
             return null;
         }
+
+        // if (availableLocations.Count != 0)
+        // {
+            int index = Random.Range(0, availableLocations.Count);
+            return availableLocations[index];
+        // }
+        // else
+        // {
+        //     return null;
+        // }
     }
 
     void SpawnCoin()
@@ -38,7 +45,7 @@ public class ItemSpawner : MonoBehaviour
         {
             nextSpawn = Time.time + spawnRate;
 
-            SpawnLocation location = GetSpawnLocation();
+            SpawnLocation location = GetSpawnLocation(false);
             if (location != null)
             {
                 LeafCoin leafCoinClone;
@@ -46,26 +53,25 @@ public class ItemSpawner : MonoBehaviour
                 leafCoinClone.spawnLocationIndex = location.index;
                 location.isSpawned = true;
             }
-            else
-            {
-                print("No spawn locations left");
-            }
+            // else
+            // {
+            //     print("No spawn locations left");
+            // }
         }
     }
 
     void SpawnPowerup()
     {
-        if (Score.scoreValue >= pointsNeededForPowerup)
+        if (Score.scoreValue >= pointsNeededForPowerup && !shooting.hasPowerUp)
         {
             pointsNeededForPowerup += pointsNeededForPowerup;
 
-            SpawnLocation location = GetSpawnLocation();
+            SpawnLocation location = GetSpawnLocation(true);
             if (location != null)
             {
-                // powerup instead of leafcoin
-                RocketPowerup rocketClone;
-                rocketClone = Instantiate(rocket, location.spawnPoint, Quaternion.identity);
-                rocketClone.spawnLocationIndex = location.index;
+                PowerUp powerUpClone = powerUps[Random.Range(0, powerUps.Length)];
+                Instantiate(powerUpClone, location.spawnPoint, Quaternion.identity);
+                powerUpClone.spawnLocationIndex = location.index;
                 location.isSpawned = true;
             }
             else

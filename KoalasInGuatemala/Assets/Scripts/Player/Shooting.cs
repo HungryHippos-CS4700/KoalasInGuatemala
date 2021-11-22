@@ -24,6 +24,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] private float cameraShakeOffset;
     [SerializeField] private bool isFiring;
     private bool canBurst;
+    public bool hasPowerUp;
 
     // Projectile types
     [SerializeField] private Bullet bullet;
@@ -31,6 +32,20 @@ public class Shooting : MonoBehaviour
 
     private Vector2 lookDirection;
     private float lookAngle;
+
+    public IEnumerator PowerUpTime(int seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        fireMode = Shooting.FireMode.SEMI;
+        hasPowerUp = false;
+    }
+
+    public void PowerUp(FireMode mode, int seconds)
+    {
+        fireMode = mode;
+        hasPowerUp = true;
+        StartCoroutine(PowerUpTime(seconds));
+    }
     
     private IEnumerator BurstFire()
     {
@@ -134,6 +149,7 @@ public class Shooting : MonoBehaviour
         fireRate = 0.25f;
         nextFire = Time.time + fireRate;
         fireMode = FireMode.SEMI;
+        hasPowerUp = false;
     }
 
     // Update is called once per frame
