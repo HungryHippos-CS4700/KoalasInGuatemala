@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private DamageText damageText;
     [SerializeField] private float damageTextOffset;
     private Rigidbody2D rb;
+    public bool isGroundEnemy;
 
     // private void DisableEnemyCollisionWithPlayer()
     // {
