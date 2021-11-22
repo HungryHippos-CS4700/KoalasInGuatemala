@@ -16,6 +16,7 @@ public class PowerUp : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
+            // Transfer power up control to shooting, does not get destroyed
             shooting.PowerUp(mode, powerUpTime);
             spawnLocations[spawnLocationIndex].isSpawned = false;
             Destroy(Instantiate(pickUpEffect, transform.position, Quaternion.identity), .517f);
