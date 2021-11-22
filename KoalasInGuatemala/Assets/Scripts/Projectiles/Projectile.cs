@@ -10,8 +10,8 @@ public class Projectile : MonoBehaviour
 
     void Start()
     {
-        GetComponent<Rigidbody2D>().velocity = transform.right * speed;
         audioManager = FindObjectOfType<AudioManager>();
+        GetComponent<Rigidbody2D>().velocity = transform.right * speed;
         // playerCollider = FindObjectOfType<PlayerController>().GetComponent<BoxCollider2D>();
         // BoxCollider2D projectileCollider = GetComponent<BoxCollider2D>();
         // Physics2D.IgnoreCollision(projectileCollider, playerCollider);
