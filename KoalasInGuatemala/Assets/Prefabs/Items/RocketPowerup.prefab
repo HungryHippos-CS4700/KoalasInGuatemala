@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5574395642948559393}
   - component: {fileID: 1512236347878442825}
-  - component: {fileID: 8991460285883693601}
+  - component: {fileID: -727267640690055392}
   - component: {fileID: -5994727328526220825}
   m_Layer: 0
   m_Name: RocketPowerup
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8991460285883693601
+--- !u!114 &-727267640690055392
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,13 +93,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3982458083717379650}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a4ad7ff2ca32cd4e8cb81eb14c2b924, type: 3}
+  m_Script: {fileID: 11500000, guid: 559481b79c429f345863af5634d9ad69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: []
   rotationsPerMinute: 60
   pickUpEffect: {fileID: 5412411019882460708, guid: 004c5b1c4a3aaed469ebc83a7a305a90, type: 3}
-  spawnLocationIndex: 0
+  spawnLocationIndex: 7
+  mode: 3
+  powerUpTime: 5
 --- !u!61 &-5994727328526220825
 BoxCollider2D:
   m_ObjectHideFlags: 0
