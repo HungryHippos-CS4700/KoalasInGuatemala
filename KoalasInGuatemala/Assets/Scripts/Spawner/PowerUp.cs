@@ -20,6 +20,7 @@ public class PowerUp : MonoBehaviour
             shooting.PowerUp(mode, powerUpTime);
             spawnLocations[spawnLocationIndex].isSpawned = false;
             Destroy(Instantiate(pickUpEffect, transform.position, Quaternion.identity), .517f);
+            shooting.powerUpSpawned = false;
             Destroy(gameObject);
         }
     }

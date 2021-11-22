@@ -25,6 +25,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] private bool isFiring;
     private bool canBurst;
     public bool hasPowerUp;
+    public bool powerUpSpawned;
 
     // Projectile types
     [SerializeField] private Bullet bullet;
@@ -150,6 +151,7 @@ public class Shooting : MonoBehaviour
         nextFire = Time.time + fireRate;
         fireMode = FireMode.SEMI;
         hasPowerUp = false;
+        powerUpSpawned = false;
     }
 
     // Update is called once per frame
