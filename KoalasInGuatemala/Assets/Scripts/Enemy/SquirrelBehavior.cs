@@ -9,6 +9,7 @@ public class SquirrelBehavior : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private GameObject acorn;
     [SerializeField] private bool throwAcorn;
+    private Animator animator;
     
     private IEnumerator ThrowAcorn(int side)
     {
@@ -25,6 +26,7 @@ public class SquirrelBehavior : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         throwAcorn = true;
     }
     void FixedUpdate()
@@ -33,6 +35,7 @@ public class SquirrelBehavior : MonoBehaviour
         {
             rb.velocity = new Vector2(2f, rb.velocity.y);
             if (transform.position.x > -8) {
+                animator.SetBool("Idle", true);
                 rb.velocity = new Vector2(0, 0);
                 if (throwAcorn)
                     StartCoroutine(ThrowAcorn(1));
@@ -43,6 +46,7 @@ public class SquirrelBehavior : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             rb.velocity = new Vector2(-2f, rb.velocity.y);
             if (transform.position.x < 8) {
+                animator.SetBool("Idle", true);
                 rb.velocity = new Vector2(0, 0);
                 if (throwAcorn)
                     StartCoroutine(ThrowAcorn(-1));

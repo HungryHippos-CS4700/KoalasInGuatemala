@@ -13,7 +13,7 @@ public class LeafCoin : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            Score.scoreValue += 1000;
+            Score.UpdateScore(1000);
             spawnLocations[spawnLocationIndex].isSpawned = false;
             Destroy(Instantiate(pickUpEffect, transform.position, Quaternion.identity), .283f);
             Destroy(gameObject);

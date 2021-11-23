@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
             rb.gravityScale = 3f;
             animator.SetBool("IsClimbing", false);
         }
+
+        
     }
 
     void FixedUpdate()
