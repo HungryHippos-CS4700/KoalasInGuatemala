@@ -13,14 +13,6 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
     public bool isGroundEnemy;
 
-    // private void DisableEnemyCollisionWithPlayer()
-    // {
-    //     PlayerController player = FindObjectOfType<PlayerController>();
-    //     Collider2D enemyCollider = GetComponent<Collider2D>();
-    //     BoxCollider2D playerCollider = player.GetComponent<BoxCollider2D>();
-    //     Physics2D.IgnoreCollision(enemyCollider, playerCollider);
-    // }
-
     public void TakeDamage(int damage)
     {
         health -= damage;

@@ -61,6 +61,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void WaveCompleted()
     {
+        audioManager.Stop("Wave");
         audioManager.Play("Wave_Complete");
         print("Wave " + waveCount + " Completed");
         state = SpawnState.COUNTING;
@@ -84,6 +85,7 @@ public class WaveSpawner : MonoBehaviour
 
     private IEnumerator SpawnWave()
     {
+        audioManager.Play("Wave");
         state = SpawnState.SPAWNING;
 
         CreateEnemyCount();

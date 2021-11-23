@@ -7,7 +7,7 @@ public class TreeHealth : MonoBehaviour
 {
     private Image HealthBar;
     public static float treeHealth;
-    [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private float maxHealth;
     private float healthPct;
     public Gradient gradient;
 

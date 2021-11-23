@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class OwlBehavior : MonoBehaviour
 {
-    // private bool onRight;
     private Rigidbody2D rb;
     [SerializeField] private float speed;
     [SerializeField] private GameObject explodeEffect;
-    private void OnTriggerEnter2D(Collider2D other)
+    
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (other.tag == "Trunk")
+        if (collider.CompareTag("Trunk"))
         {
             TreeHealth.treeHealth -= 10;
             Destroy(Instantiate(explodeEffect, transform.position, Quaternion.identity), .517f);
