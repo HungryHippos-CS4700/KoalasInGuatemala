@@ -15,7 +15,7 @@ public class HealthBar : MonoBehaviour
         }
         else
         {
-            transform.localScale = new Vector3(health/maxHealth, .1f, 0f);
+            transform.localScale = new Vector3(2f*health/maxHealth, .5f, 0f);
         }
         GetComponent<SpriteRenderer>().color = Color.Lerp(low, high, health/maxHealth);
     }

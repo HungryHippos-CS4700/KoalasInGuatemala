@@ -14,7 +14,7 @@ public class WaveSpawner : MonoBehaviour
     // [SerializeField] private int startWave = 1;
     [SerializeField] private int waveCount = 1;
     [SerializeField] private float spawnRate = 1f;
-    [SerializeField] private float timeBetweenWaves = 5f;
+    [SerializeField] private float timeBetweenWaves;
     [SerializeField] private float waveCountdown;
     [SerializeField] private SpawnState state = SpawnState.COUNTING;
     private float searchCountdown = 1f;

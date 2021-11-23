@@ -7,14 +7,14 @@ public class OwlBehavior : MonoBehaviour
     // private bool onRight;
     private Rigidbody2D rb;
     [SerializeField] private float speed;
-    private bool moveLeft;
-
+    [SerializeField] private GameObject explodeEffect;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Trunk")
         {
-            Destroy(gameObject);
             TreeHealth.treeHealth -= 10;
+            Destroy(Instantiate(explodeEffect, transform.position, Quaternion.identity), .517f);
+            Destroy(gameObject);
         }
     }
 
