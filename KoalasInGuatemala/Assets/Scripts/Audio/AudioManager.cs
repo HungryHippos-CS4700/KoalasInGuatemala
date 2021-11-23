@@ -7,6 +7,21 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
 
+    public static AudioManager Instance = null;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
         foreach (Sound sound in sounds)
@@ -20,18 +35,18 @@ public class AudioManager : MonoBehaviour
     }
 
     public void Play(string name, bool setRandomPitch)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
         {
-            Sound s = Array.Find(sounds, sound => sound.name == name);
-            if (s == null)
-            {
-                Debug.Log("Audio not found");
-                return;
-            }
-            if (setRandomPitch)
-            {
-                s.source.pitch = UnityEngine.Random.Range(0.8f, 1.2f);
-            }
-            s.source.Play();
+            Debug.Log("Audio not found");
+            return;
+        }
+        if (setRandomPitch)
+        {
+            s.source.pitch = UnityEngine.Random.Range(0.8f, 1.2f);
+        }
+        s.source.Play();
         }
 
     public void Play(string name)

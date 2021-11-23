@@ -18,7 +18,6 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private float waveCountdown;
     [SerializeField] private SpawnState state = SpawnState.COUNTING;
     private float searchCountdown = 1f;
-    [SerializeField] private AudioManager audioManager;
     
     // Start is called before the first frame update
     void Start()
@@ -61,8 +60,8 @@ public class WaveSpawner : MonoBehaviour
 
     private void WaveCompleted()
     {
-        audioManager.Stop("Wave");
-        audioManager.Play("Wave_Complete");
+        AudioManager.Instance.Stop("Wave");
+        AudioManager.Instance.Play("Wave_Complete");
         print("Wave " + waveCount + " Completed");
         state = SpawnState.COUNTING;
         waveCountdown = timeBetweenWaves;
@@ -85,7 +84,7 @@ public class WaveSpawner : MonoBehaviour
 
     private IEnumerator SpawnWave()
     {
-        audioManager.Play("Wave");
+        AudioManager.Instance.Play("Wave");
         state = SpawnState.SPAWNING;
 
         CreateEnemyCount();

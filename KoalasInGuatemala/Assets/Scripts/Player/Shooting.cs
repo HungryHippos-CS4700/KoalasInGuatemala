@@ -18,7 +18,6 @@ public class Shooting : MonoBehaviour
     [SerializeField] private GameObject arm;
     [SerializeField] private Sprite[] gunSprites;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private AudioManager audioManager;
     [SerializeField] private float fireRate;
     [SerializeField] private float nextFire;
     [SerializeField] private float cameraShakeOffset;
@@ -53,7 +52,7 @@ public class Shooting : MonoBehaviour
         canBurst= false;
         for (int i = 0; i < 3; i++)
         {
-            audioManager.Play("Auto");
+            AudioManager.Instance.Play("Auto");
             Bullet(80f, 30, false, "Auto");
             yield return new WaitForSeconds(.075f);
         }
@@ -64,7 +63,7 @@ public class Shooting : MonoBehaviour
     {
         Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + Random.Range(-cameraShakeOffset, cameraShakeOffset),
         Camera.main.transform.position.y + Random.Range(-cameraShakeOffset, cameraShakeOffset), -10f);
-        audioManager.Play(audio);
+        AudioManager.Instance.Play(audio);
         Bullet bulletClone;
         if (spread)
         {
@@ -82,7 +81,7 @@ public class Shooting : MonoBehaviour
     {
         Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + Random.Range(-cameraShakeOffset-.2f, cameraShakeOffset+.2f),
         Camera.main.transform.position.y + Random.Range(-cameraShakeOffset-.2f, cameraShakeOffset+.2f), -10f);
-        audioManager.Play("RPG");
+        AudioManager.Instance.Play("RPG");
         Rocket rocketClone;
         rocketClone = Instantiate(rocket, firePoint.position, Quaternion.Euler(0f, 0f, lookAngle));
         rocketClone.speed = 20f;

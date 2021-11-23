@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float maxHealth;
     [SerializeField] private float health;
     [SerializeField] private HealthBar healthBar;
-    [SerializeField] private AudioManager audioManager;
     [SerializeField] private DamageText damageText;
     [SerializeField] private float damageTextOffset;
     private Rigidbody2D rb;
@@ -26,8 +25,7 @@ public class Enemy : MonoBehaviour
     
     void Start()
     {
-        // DisableEnemyCollisionWithPlayer();
-        audioManager = FindObjectOfType<AudioManager>();
+        //audioManager = FindObjectOfType<AudioManager>();
         rb = GetComponent<Rigidbody2D>();
         healthBar.SetHealth(health, maxHealth);
     }
@@ -36,9 +34,8 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0)
         {
-            // add check: if the enemy is an owl
             Score.UpdateScore(500);
-            audioManager.Play("Enemy_Death");
+            AudioManager.Instance.Play("Enemy_Death");
             Object.Destroy(gameObject);
         }
     }

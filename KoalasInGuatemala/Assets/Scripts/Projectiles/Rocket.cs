@@ -16,7 +16,7 @@ public class Rocket : Projectile
             rocketSmoke.GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity;
             rocketSmoke.transform.parent = null;
             rocketSmoke.GetComponent<ParticleSystem>().Stop();
-            audioManager.Play("RPG_Collision");
+            AudioManager.Instance.Play("RPG_Collision");
             // Instantiate particle and destroy afterwards
             Destroy(Instantiate(explosion, transform.position, Quaternion.identity), 2f);
             if (collider.CompareTag("Enemy"))
@@ -24,7 +24,7 @@ public class Rocket : Projectile
                 Enemy enemy = collider.GetComponent<Enemy>();
                 damage = 80;
                 enemy.TakeDamage(damage);
-                audioManager.Play("Enemy_Hit", true);
+                AudioManager.Instance.Play("Enemy_Hit", true);
             }
 
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, blastRadius);
@@ -35,7 +35,7 @@ public class Rocket : Projectile
                 {
                     damage = Random.Range(50, 55);
                     enemy.TakeDamage(damage);
-                    audioManager.Play("Enemy_Hit", true);
+                    AudioManager.Instance.Play("Enemy_Hit", true);
                 }
             }
             Destroy(gameObject);

@@ -124,7 +124,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.18084145, y: -0.6640298}
+  m_Offset: {x: -0.18084145, y: -0.510979}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -135,7 +135,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6383171, y: 0.98376787}
+  m_Size: {x: 1.6383171, y: 1.2898694}
   m_EdgeRadius: 0
 --- !u!95 &1543061218404311994
 Animator:
@@ -171,7 +171,6 @@ MonoBehaviour:
   maxHealth: 50
   health: 50
   healthBar: {fileID: 2773787803764496478}
-  audioManager: {fileID: 0}
   damageText: {fileID: 7818319922044016141, guid: 873380f01d3fa6442bc13bfbc2f4589c, type: 3}
   damageTextOffset: 0
   isGroundEnemy: 1

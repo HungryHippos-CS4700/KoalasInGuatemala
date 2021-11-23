@@ -22,7 +22,7 @@ public class Bullet : Projectile
                     main.startColor = Color.red;
                     Enemy enemy = collider.gameObject.GetComponent<Enemy>();
                     enemy.TakeDamage(Random.Range(damage - 2, damage + 2));
-                    audioManager.Play("Enemy_Hit", true);
+                    AudioManager.Instance.Play("Enemy_Hit", true);
                     break;
                 }
 
@@ -34,7 +34,7 @@ public class Bullet : Projectile
                     Color color2 = new Color(0.6f, 0.2f, 0.1f);
                     main.startColor = new ParticleSystem.MinMaxGradient(color1, color2);
                     
-                    audioManager.Play("Bullet_Collision");
+                    AudioManager.Instance.Play("Bullet_Collision");
                     break;
                 }
                 
@@ -44,13 +44,13 @@ public class Bullet : Projectile
                     Color color2 = new Color(0.6f, 0.9f, 0.3f);
                     main.startColor = new ParticleSystem.MinMaxGradient(color1, color2);
                     
-                    audioManager.Play("Bullet_Collision");
+                    AudioManager.Instance.Play("Bullet_Collision");
                     break;
                 }
 
                 default:
                 {
-                    audioManager.Play("Bullet_Collision");
+                    AudioManager.Instance.Play("Bullet_Collision");
                     break;
                 }
             }
