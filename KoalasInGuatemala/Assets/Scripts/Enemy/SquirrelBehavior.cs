@@ -10,12 +10,12 @@ public class SquirrelBehavior : MonoBehaviour
     [SerializeField] private GameObject acorn;
     [SerializeField] private bool throwAcorn;
     
-    private IEnumerator ThrowAcorn()
+    private IEnumerator ThrowAcorn(int side)
     {
         throwAcorn = false;
         GameObject acornClone = Instantiate(acorn, transform.position, Quaternion.identity);
         Rigidbody2D acornRB = acornClone.GetComponent<Rigidbody2D>();
-        acornRB.velocity = new Vector2(12f, 8f);
+        acornRB.velocity = new Vector2(side * 12f, 8f);
         acornRB.angularVelocity = Random.Range(-720, 720);
         yield return new WaitForSeconds(1.5f);
         throwAcorn = true;
@@ -35,7 +35,7 @@ public class SquirrelBehavior : MonoBehaviour
             if (transform.position.x > -8) {
                 rb.velocity = new Vector2(0, 0);
                 if (throwAcorn)
-                    StartCoroutine(ThrowAcorn());
+                    StartCoroutine(ThrowAcorn(1));
             }
         }
         else
@@ -45,7 +45,7 @@ public class SquirrelBehavior : MonoBehaviour
             if (transform.position.x < 8) {
                 rb.velocity = new Vector2(0, 0);
                 if (throwAcorn)
-                    StartCoroutine(ThrowAcorn());
+                    StartCoroutine(ThrowAcorn(-1));
             }
         }
     }

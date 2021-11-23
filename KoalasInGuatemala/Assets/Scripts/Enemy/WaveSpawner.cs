@@ -18,6 +18,7 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private float waveCountdown;
     [SerializeField] private SpawnState state = SpawnState.COUNTING;
     private float searchCountdown = 1f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +58,14 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
+    private void WaveCompleted()
+    {
+        print("Wave " + waveCount + " Completed");
+        state = SpawnState.COUNTING;
+        waveCountdown = timeBetweenWaves;
+        waveCount++;
+    }
+
     private bool EnemyIsAlive()
     {
         searchCountdown = -Time.deltaTime;
@@ -81,9 +90,13 @@ public class WaveSpawner : MonoBehaviour
 
         while (!AllEnemiesSpawned())
         {
-            int index = Random.Range(0, enemiesLeft.Length);
-            SpawnEnemy(enemies[index]);
+            int index = Random.Range(0, enemies.Length);
+            while (enemiesLeft[index] <= 0) {
+                index = Random.Range(0, enemies.Length);
+            }
+
             enemiesLeft[index] -= 1;
+            SpawnEnemy(enemies[index]);
             yield return new WaitForSeconds(spawnRate); // change the spawn rate later
         }
 
@@ -106,14 +119,21 @@ public class WaveSpawner : MonoBehaviour
             int index = Random.Range(0, groundLocations.Length);
             Instantiate(enemy, groundLocations[index], Quaternion.identity);
         }
+        print("Owls: " + enemiesLeft[0]);
+        print("Squirrels: " + enemiesLeft[1]);
     }
 
-    private void WaveCompleted()
+    private bool AllEnemiesSpawned()
     {
-        print("Wave " + waveCount + " Completed");
-        state = SpawnState.COUNTING;
-        waveCountdown = timeBetweenWaves;
-        waveCount++;
+        for (int i = 0; i < enemiesLeft.Length; i++)
+        {
+            if (enemiesLeft[i] > 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private void CreateEnemyCount()
@@ -126,18 +146,5 @@ public class WaveSpawner : MonoBehaviour
             }
             // add to this for other enemies
         }
-    }
-
-    private bool AllEnemiesSpawned()
-    {
-        for (int i = 0; i < enemiesLeft.Length; i++)
-        {
-            if (enemiesLeft[i] != 0)
-            {
-                return false;
-            }
-        }
-
-        return true;
     }
 }
