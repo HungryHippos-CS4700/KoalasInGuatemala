@@ -201,7 +201,7 @@ public class Shooting : MonoBehaviour
         if (treeBehavior.inTrunk)
         {
             arm.GetComponent<SpriteRenderer>().enabled = false;
-            isFiring = false;
+            //isFiring = false;
         }
         else
         {
@@ -225,15 +225,24 @@ public class Shooting : MonoBehaviour
         firePoint.rotation = Quaternion.Euler(0f, 0f, lookAngle);
 
         // Shoot
-        // if (Input.GetMouseButtonDown(0) && !treeBehavior.inTrunk)
-        // {
-        //     isFiring = !isFiring;
-        // }
-
-        if (Input.GetAxisRaw("Fire1") > 0 && Time.time > nextFire && !treeBehavior.inTrunk && !pauseShooting)
+        if (Input.GetMouseButtonDown(0) && !treeBehavior.inTrunk)
         {
-            Fire();
+            isFiring = !isFiring;
         }
+        // if (fireMode == FireMode.AUTO)
+        // {
+        if (Time.time > nextFire && !treeBehavior.inTrunk && isFiring && !pauseShooting)
+            {
+                Fire();
+            }
+        //}
+        // else
+        // {
+        //     if (Input.GetMouseButtonDown(0) && Time.time > nextFire && !treeBehavior.inTrunk && !pauseShooting)
+        //     {
+        //         Fire();
+        //     }
+        // }
 
         // Switch Weapons
         if (Input.GetKeyDown(KeyCode.Alpha1))

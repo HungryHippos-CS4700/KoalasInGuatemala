@@ -63,7 +63,8 @@ public class WaveSpawner : MonoBehaviour
 
     private void WaveCompleted()
     {
-        LeanTween.move(shop, new Vector2(0, 0), .3f).setEase(LeanTweenType.easeOutBack).setDelay(5);
+        Shooting.pauseShooting = true;
+        LeanTween.move(shop, new Vector2(0, 0), .3f).setEase(LeanTweenType.easeOutBack).setDelay(4.5f);
         WaveText waveTextClone = Instantiate(waveText, UI);
         WaveText.waveNum = waveCount;
         AudioManager.Instance.Stop("Wave");
@@ -91,6 +92,7 @@ public class WaveSpawner : MonoBehaviour
     private IEnumerator SpawnWave()
     {
         AudioManager.Instance.Play("Wave");
+        Shooting.pauseShooting = false;
         LeanTween.move(shop, new Vector2(60, 0), .1f);
         state = SpawnState.SPAWNING;
 
