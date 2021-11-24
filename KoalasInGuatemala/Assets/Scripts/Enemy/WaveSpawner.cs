@@ -12,11 +12,13 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private GameObject[] enemies;
     [SerializeField] private int[] enemiesLeft;
     // [SerializeField] private int startWave = 1;
-    [SerializeField] private int waveCount = 1;
+    [SerializeField] private int waveCount;
     [SerializeField] private float spawnRate = 1f;
     [SerializeField] private float timeBetweenWaves;
     [SerializeField] private float waveCountdown;
     [SerializeField] private SpawnState state = SpawnState.COUNTING;
+    [SerializeField] private RectTransform UI;
+    [SerializeField] private WaveText waveText;
     private float searchCountdown = 1f;
     
     // Start is called before the first frame update
@@ -60,6 +62,8 @@ public class WaveSpawner : MonoBehaviour
 
     private void WaveCompleted()
     {
+        WaveText waveTextClone = Instantiate(waveText, UI);
+        WaveText.waveNum = waveCount;
         AudioManager.Instance.Stop("Wave");
         AudioManager.Instance.Play("Wave_Complete");
         print("Wave " + waveCount + " Completed");
@@ -122,8 +126,6 @@ public class WaveSpawner : MonoBehaviour
             int index = Random.Range(0, groundLocations.Length);
             Instantiate(enemy, groundLocations[index], Quaternion.identity);
         }
-        print("Owls: " + enemiesLeft[0]);
-        print("Squirrels: " + enemiesLeft[1]);
     }
 
     private bool AllEnemiesSpawned()

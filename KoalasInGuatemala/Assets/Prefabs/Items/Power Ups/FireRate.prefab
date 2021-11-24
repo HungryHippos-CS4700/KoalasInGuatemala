@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3489294210933397520}
   - component: {fileID: 339969603391786886}
   m_Layer: 0
-  m_Name: AutoPowerUp
+  m_Name: FireRate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 682194449
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0c3ee9b9e3df445478bf29b3baa0902f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fc7f6f0d425026b4d9bffc5d461682aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,11 +97,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: []
-  rotationsPerMinute: 60
   pickUpEffect: {fileID: 5412411019882460708, guid: 004c5b1c4a3aaed469ebc83a7a305a90, type: 3}
-  spawnLocationIndex: 0
-  mode: 4
   powerUpTime: 10
+  mode: rate
+  spawnLocationIndex: 9
 --- !u!61 &339969603391786886
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -119,12 +118,12 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.375, y: 1.25}
+    oldSize: {x: 3.75, y: 2.125}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.375, y: 1.25}
+  m_Size: {x: 3.75, y: 2.125}
   m_EdgeRadius: 0

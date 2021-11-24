@@ -6,7 +6,7 @@ public class Rocket : Projectile
 {
     [SerializeField] private GameObject explosion;
     [SerializeField] private GameObject rocketSmoke;
-    private int damage;
+    public int damage;
     private float blastRadius = 2.5f;
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -22,7 +22,6 @@ public class Rocket : Projectile
             if (collider.CompareTag("Enemy"))
             {
                 Enemy enemy = collider.GetComponent<Enemy>();
-                damage = 80;
                 enemy.TakeDamage(damage);
                 AudioManager.Instance.Play("Enemy_Hit", true);
             }
@@ -33,7 +32,6 @@ public class Rocket : Projectile
                 Enemy enemy = nearbyEnemy.GetComponent<Enemy>();
                 if (enemy != null)
                 {
-                    damage = Random.Range(50, 55);
                     enemy.TakeDamage(damage);
                     AudioManager.Instance.Play("Enemy_Hit", true);
                 }

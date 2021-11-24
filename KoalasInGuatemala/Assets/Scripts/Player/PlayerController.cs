@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private TreeBehavior treeBehavior;
     [SerializeField] private float speed;
+    public float powerUpSpeed;
+    public float buySpeed;
     private float inputHorizontal;
     private float inputVertical;
     public Animator animator;
@@ -15,6 +17,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        powerUpSpeed = 1;
+        buySpeed = 1;
     }
 
     void Update()
@@ -40,12 +44,12 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // Horizontal movement
-        rb.velocity = new Vector2(inputHorizontal * speed, rb.velocity.y);
+        rb.velocity = new Vector2(inputHorizontal * speed * powerUpSpeed * buySpeed, rb.velocity.y);
 
         // Vertical movement
         if (treeBehavior.inTrunk)
         {
-            rb.velocity = new Vector2(rb.velocity.x, inputVertical * speed);
+            rb.velocity = new Vector2(rb.velocity.x, inputVertical * speed * powerUpSpeed * buySpeed);
         }
 
         if (Mathf.Abs(inputHorizontal) > 0 || (Mathf.Abs(inputVertical) > 0f && treeBehavior.inTrunk))

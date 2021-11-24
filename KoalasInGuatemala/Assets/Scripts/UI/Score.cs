@@ -28,9 +28,9 @@ public class Score : MonoBehaviour
     {
         scoreValue += score;
         scoreText.text = "" + scoreValue;
-        LeanTween.scale(scoreText.gameObject, new Vector3(1.25f, 1.25f, 1.25f), 0.05f).setEase(LeanTweenType.easeInSine);
+        LeanTween.scale(scoreText.gameObject, new Vector2(1.25f, 1.25f), 0.05f);
         // LeanTween.rotate(scoreText.gameObject, new Vector3(0f, 0f, Random.Range(-30, 30)), 0.05f);
-        LeanTween.scale(scoreText.gameObject, new Vector3(1f, 1f, 1f), 0.05f).setDelay(0.05f);
+        LeanTween.scale(scoreText.gameObject, new Vector2(1f, 1f), 0.05f).setDelay(0.05f);
         // LeanTween.rotate(scoreText.gameObject, new Vector3(0f, 0f, 0f), 0.05f).setDelay(0.08f);;
     }
 }

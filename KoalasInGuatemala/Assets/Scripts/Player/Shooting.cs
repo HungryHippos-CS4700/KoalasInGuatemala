@@ -15,10 +15,13 @@ public class Shooting : MonoBehaviour
     public FireMode fireMode;
     [SerializeField] private Animator animator;
     [SerializeField] private TreeBehavior treeBehavior;
+    [SerializeField] private PlayerController player;
     [SerializeField] private GameObject arm;
     [SerializeField] private Sprite[] gunSprites;
     [SerializeField] private Transform firePoint;
     [SerializeField] private float fireRate;
+    private float powerUpRate;
+    private float buyRate;
     [SerializeField] private float nextFire;
     [SerializeField] private float cameraShakeOffset;
     [SerializeField] private bool isFiring;
@@ -28,22 +31,53 @@ public class Shooting : MonoBehaviour
 
     // Projectile types
     [SerializeField] private Bullet bullet;
+    private int powerUpDamage;
+    private int buyDamage;
+    private int instakill;
     [SerializeField] private Rocket rocket;
 
     private Vector2 lookDirection;
     private float lookAngle;
 
-    public IEnumerator PowerUpTime(int seconds)
+    private IEnumerator PowerUpTime(int seconds)
     {
         yield return new WaitForSeconds(seconds);
-        fireMode = Shooting.FireMode.SEMI;
+        powerUpDamage = 1;
+        powerUpRate = 1;
+        instakill = 1;
+        player.powerUpSpeed = 1f;
         hasPowerUp = false;
     }
 
-    public void PowerUp(FireMode mode, int seconds)
+    public void PowerUp(string mode, int seconds)
     {
-        fireMode = mode;
         hasPowerUp = true;
+        switch (mode)
+        {
+            case "damage":
+            {
+                powerUpDamage = 2;
+                break;
+            }
+
+            case "rate":
+            {
+                powerUpRate = 2;
+                break;
+            }
+
+            case "speed":
+            {
+                player.powerUpSpeed = 1.25f;
+                break;
+            }
+            
+            case "insta":
+            {
+                instakill = 1000;
+                break;
+            }
+        }
         StartCoroutine(PowerUpTime(seconds));
     }
     
@@ -53,7 +87,7 @@ public class Shooting : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             AudioManager.Instance.Play("Auto");
-            Bullet(80f, 30, false, "Auto");
+            Bullet(80f, 25, false, "Auto");
             yield return new WaitForSeconds(.075f);
         }
         canBurst = true;
@@ -73,7 +107,7 @@ public class Shooting : MonoBehaviour
         {
             bulletClone = Instantiate(bullet, firePoint.position, Quaternion.Euler(0f, 0f, lookAngle));
         }
-        bulletClone.damage = damage;
+        bulletClone.damage = damage * buyDamage * powerUpDamage * instakill;
         bulletClone.speed = speed;
     }
 
@@ -84,6 +118,7 @@ public class Shooting : MonoBehaviour
         AudioManager.Instance.Play("RPG");
         Rocket rocketClone;
         rocketClone = Instantiate(rocket, firePoint.position, Quaternion.Euler(0f, 0f, lookAngle));
+        rocketClone.damage = 80 * buyDamage * powerUpDamage * instakill;
         rocketClone.speed = 20f;
     }
 
@@ -94,17 +129,17 @@ public class Shooting : MonoBehaviour
         {
             case FireMode.SEMI:
             {
-                fireRate = 4f;
-                Bullet(80f, 30, false, "Pistol");
+                fireRate = 4f * buyRate * powerUpRate;
+                Bullet(80f, 20, false, "Pistol");
                 break;
             }
 
             case FireMode.SPREAD:
             {
-                fireRate = 1f;
+                fireRate = 1f * buyRate * powerUpRate;
                 for (int i = 0; i < 5; i++)
                 {
-                    Bullet(50f, 40, true, "Shotgun");
+                    Bullet(20f, 40, true, "Shotgun");
                 }
                 break;
             }
@@ -112,7 +147,7 @@ public class Shooting : MonoBehaviour
             case FireMode.BURST:
             {
                 canBurst = true;
-                fireRate = 2f;
+                fireRate = 1.5f * buyRate * powerUpRate;
                 if (canBurst)
                     StartCoroutine(BurstFire());
                 break;
@@ -120,15 +155,15 @@ public class Shooting : MonoBehaviour
 
             case FireMode.RPG:
             {
-                fireRate = 1f;
+                fireRate = 2f * buyRate * powerUpRate;
                 Rocket();
                 break;
             }
 
             case FireMode.AUTO:
             {
-                fireRate = 12f;
-                Bullet(80f, 30, false, "Auto");
+                fireRate = 12f * buyRate * powerUpRate;
+                Bullet(80f, 15, false, "Auto");
                 break;
             }
 
@@ -147,10 +182,15 @@ public class Shooting : MonoBehaviour
     {
         isFiring = false;
         fireRate = 0.25f;
+        powerUpRate = 1f;
+        buyRate = 1f;
         nextFire = Time.time + fireRate;
         fireMode = FireMode.SEMI;
         hasPowerUp = false;
         powerUpSpawned = false;
+        powerUpDamage = 1;
+        buyDamage = 1;
+        instakill = 1;
     }
 
     // Update is called once per frame
