@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private float inputHorizontal;
     private float inputVertical;
     public Animator animator;
+    public static int gemCount = 0;
 
     void Start()
     {

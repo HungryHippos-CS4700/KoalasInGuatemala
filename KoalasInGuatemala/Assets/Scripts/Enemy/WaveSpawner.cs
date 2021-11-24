@@ -15,9 +15,10 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private int waveCount;
     [SerializeField] private float spawnRate = 1f;
     [SerializeField] private float timeBetweenWaves;
-    [SerializeField] private float waveCountdown;
+    public static float waveCountdown;
     [SerializeField] private SpawnState state = SpawnState.COUNTING;
     [SerializeField] private RectTransform UI;
+    [SerializeField] private RectTransform shop;
     [SerializeField] private WaveText waveText;
     private float searchCountdown = 1f;
     
@@ -28,7 +29,7 @@ public class WaveSpawner : MonoBehaviour
         // waveCount = startWave;
 
         enemiesLeft = new int[enemies.Length];
-        waveCountdown = timeBetweenWaves;
+        waveCountdown = 1f;
     }
 
     // Update is called once per frame
@@ -62,6 +63,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void WaveCompleted()
     {
+        LeanTween.move(shop, new Vector2(0, 0), .3f).setEase(LeanTweenType.easeOutBack).setDelay(5);
         WaveText waveTextClone = Instantiate(waveText, UI);
         WaveText.waveNum = waveCount;
         AudioManager.Instance.Stop("Wave");
@@ -89,6 +91,7 @@ public class WaveSpawner : MonoBehaviour
     private IEnumerator SpawnWave()
     {
         AudioManager.Instance.Play("Wave");
+        LeanTween.move(shop, new Vector2(60, 0), .1f);
         state = SpawnState.SPAWNING;
 
         CreateEnemyCount();

@@ -13,6 +13,8 @@ public class Shooting : MonoBehaviour
         BRR
     }
     public FireMode fireMode;
+    public static bool[] ownedGuns = {false, false, false, false};
+    public static bool pauseShooting = false;
     [SerializeField] private Animator animator;
     [SerializeField] private TreeBehavior treeBehavior;
     [SerializeField] private PlayerController player;
@@ -68,7 +70,7 @@ public class Shooting : MonoBehaviour
 
             case "speed":
             {
-                player.powerUpSpeed = 1.25f;
+                player.powerUpSpeed = 1.5f;
                 break;
             }
             
@@ -139,7 +141,7 @@ public class Shooting : MonoBehaviour
                 fireRate = 1f * buyRate * powerUpRate;
                 for (int i = 0; i < 5; i++)
                 {
-                    Bullet(20f, 40, true, "Shotgun");
+                    Bullet(40f, 40, true, "Shotgun");
                 }
                 break;
             }
@@ -223,13 +225,33 @@ public class Shooting : MonoBehaviour
         firePoint.rotation = Quaternion.Euler(0f, 0f, lookAngle);
 
         // Shoot
-        if (Input.GetMouseButtonDown(0) && !treeBehavior.inTrunk)
-        {
-            isFiring = !isFiring;
-        }
-        if (Time.time > nextFire && isFiring && !treeBehavior.inTrunk)
+        // if (Input.GetMouseButtonDown(0) && !treeBehavior.inTrunk)
+        // {
+        //     isFiring = !isFiring;
+        // }
+
+        if (Input.GetAxisRaw("Fire1") > 0 && Time.time > nextFire && !treeBehavior.inTrunk && !pauseShooting)
         {
             Fire();
         }
+
+        // Switch Weapons
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            fireMode = FireMode.SEMI;
+
+        if (Input.GetKeyDown(KeyCode.Alpha2) && ownedGuns[0])
+            fireMode = FireMode.SPREAD;
+        
+        if (Input.GetKeyDown(KeyCode.Alpha3) && ownedGuns[1])
+            fireMode = FireMode.BURST;
+
+        if (Input.GetKeyDown(KeyCode.Alpha4) && ownedGuns[2])
+            fireMode = FireMode.AUTO;
+        
+        if (Input.GetKeyDown(KeyCode.Alpha5) && ownedGuns[3])
+            fireMode = FireMode.RPG;
+
+        if (Input.GetKeyDown(KeyCode.L))
+            fireMode = FireMode.BRR;
     }
 }

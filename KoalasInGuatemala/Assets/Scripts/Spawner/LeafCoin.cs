@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LeafCoin : MonoBehaviour
 {
     [SerializeField] private SpawnLocation[] spawnLocations;
-    [SerializeField] private float rotationsPerMinute;
     [SerializeField] private GameObject pickUpEffect;
     public int spawnLocationIndex;
 
@@ -13,6 +13,7 @@ public class LeafCoin : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
+            PlayerController.gemCount++;
             Score.UpdateScore(1000);
             spawnLocations[spawnLocationIndex].isSpawned = false;
             Destroy(Instantiate(pickUpEffect, transform.position, Quaternion.identity), .283f);
@@ -24,12 +25,5 @@ public class LeafCoin : MonoBehaviour
     void Start()
     {
         spawnLocations = FindObjectOfType<ItemSpawner>().spawnLocations;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        transform.Rotate(0, 6.0f * rotationsPerMinute * Time.deltaTime, 0);
-
     }
 }

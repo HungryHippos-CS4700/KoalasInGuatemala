@@ -13,8 +13,8 @@ public class DamageText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string infDamageText = (Random.Range(0f, 1f) > .5f) ? "BOOM" : "POW";
-        text.text = damage > 900 ? infDamageText : "" + damage;
+        string infDamageText = (Random.Range(0f, 1f) > .5f) ? "INF" : "POW";
+        text.text = damage > 900 ? "INF" : "" + damage;
         LeanTween.moveY(gameObject, transform.position.y + 1f, 1f).setEase(easeType);
         LeanTween.scale(gameObject, new Vector3(1f, 1f, 1f), 0.15f);
         LeanTween.moveY(gameObject, transform.position.y + 1.5f, 0.5f).setEase(easeType).setDelay(1.5f);
