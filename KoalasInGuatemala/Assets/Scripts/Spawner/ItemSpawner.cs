@@ -55,6 +55,8 @@ public class ItemSpawner : MonoBehaviour
                 LeafCoin leafCoinClone;
                 leafCoinClone = Instantiate(leafCoin, location.spawnPoint, Quaternion.identity);
                 leafCoinClone.spawnLocationIndex = location.index;
+                print(location.index);
+                print(leafCoinClone.spawnLocationIndex);
                 location.isSpawned = true;
             }
             // else
@@ -73,8 +75,8 @@ public class ItemSpawner : MonoBehaviour
             SpawnLocation location = GetSpawnLocation(true);
             if (location != null)
             {
-                PowerUp powerUpClone = powerUps[Random.Range(0, powerUps.Length)];
-                Instantiate(powerUpClone, location.spawnPoint, Quaternion.identity);
+                PowerUp powerUpType = powerUps[Random.Range(0, powerUps.Length)];
+                PowerUp powerUpClone = Instantiate(powerUpType, location.spawnPoint, Quaternion.identity);
                 shooting.powerUpSpawned = true;
                 powerUpClone.spawnLocationIndex = location.index;
                 location.isSpawned = true;

@@ -100,7 +100,7 @@ MonoBehaviour:
   pickUpEffect: {fileID: 5412411019882460708, guid: 004c5b1c4a3aaed469ebc83a7a305a90, type: 3}
   powerUpTime: 10
   mode: damage
-  spawnLocationIndex: 8
+  spawnLocationIndex: 0
 --- !u!61 &7446009819694186342
 BoxCollider2D:
   m_ObjectHideFlags: 0
