@@ -6,10 +6,14 @@ public class ItemSpawner : MonoBehaviour
 {
     public SpawnLocation[] spawnLocations;
     [SerializeField] LeafCoin leafCoin;
+    [SerializeField] Heart heart;
     [SerializeField] private PowerUp[] powerUps;
     [SerializeField] private float spawnRate;
     private float nextSpawn;
     [SerializeField] private int pointsNeededForPowerup;
+    [SerializeField] private int nextPointsNeededForPowerup;
+    [SerializeField] private int pointsNeededForHeart;
+    [SerializeField] private int nextPointsNeededForHeart;
     [SerializeField] private Shooting shooting;
 
     SpawnLocation GetSpawnLocation(bool spawnPowerup)
@@ -64,7 +68,7 @@ public class ItemSpawner : MonoBehaviour
     {
         if (Score.scoreValue >= pointsNeededForPowerup && !shooting.hasPowerUp && !shooting.powerUpSpawned)
         {
-            pointsNeededForPowerup += 1000;
+            pointsNeededForPowerup += nextPointsNeededForPowerup;
 
             SpawnLocation location = GetSpawnLocation(true);
             if (location != null)
@@ -82,6 +86,21 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 
+    void SpawnHeart() {
+        if (Score.scoreValue >= pointsNeededForHeart) {
+            pointsNeededForHeart += nextPointsNeededForHeart;
+            
+            SpawnLocation location = GetSpawnLocation(false);
+            if (location != null)
+            {
+                Heart heartClone;
+                heartClone = Instantiate(heart, location.spawnPoint, Quaternion.identity);
+                heartClone.spawnLocationIndex = location.index;
+                location.isSpawned = true;
+            }
+        }
+    }
+
     void Start()
     {
     }
@@ -89,5 +108,6 @@ public class ItemSpawner : MonoBehaviour
     {
         SpawnCoin();
         SpawnPowerup();
+        SpawnHeart();
     }
 }

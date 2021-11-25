@@ -2105,6 +2105,7 @@ MonoBehaviour:
     spawnPoint: {x: -9.39, y: 1.5}
     isSpawned: 0
   leafCoin: {fileID: 5835713362431977289, guid: dd5f9e3674b689040823a00a5efae612, type: 3}
+  heart: {fileID: 3644566563896244406, guid: 62087357bfd1a5b419a3a3206086c1bf, type: 3}
   powerUps:
   - {fileID: -727267640690055392, guid: 852c2736105630e4ca70932a88427c28, type: 3}
   - {fileID: 7018402622008048173, guid: 5a92dfddd25e04145935fbd8a69f6592, type: 3}
@@ -2112,6 +2113,9 @@ MonoBehaviour:
   - {fileID: 3489294210933397520, guid: 51bcbde1ecc2b4d49b838e7149639514, type: 3}
   spawnRate: 1
   pointsNeededForPowerup: 1000
+  nextPointsNeededForPowerup: 1000
+  pointsNeededForHeart: 5000
+  nextPointsNeededForHeart: 5000
   shooting: {fileID: 1406481954}
 --- !u!4 &502234359
 Transform:

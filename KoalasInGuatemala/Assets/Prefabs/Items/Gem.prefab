@@ -114,8 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocations: []
-  rotationsPerMinute: 0
   pickUpEffect: {fileID: 5783503535457474210, guid: 9cf5452ca1a861b45b8d074ce4dfb548, type: 3}
+  addToScore: 1000
   spawnLocationIndex: 0
 --- !u!95 &250321098998018254
 Animator:

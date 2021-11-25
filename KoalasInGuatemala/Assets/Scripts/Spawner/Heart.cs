@@ -1,21 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
-public class LeafCoin : MonoBehaviour
+public class Heart : MonoBehaviour
 {
     [SerializeField] private SpawnLocation[] spawnLocations;
     [SerializeField] private GameObject pickUpEffect;
-    [SerializeField] private int addToScore;
+    [SerializeField] private int regenAmount;
     public int spawnLocationIndex;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            PlayerController.gemCount++;
-            Score.UpdateScore(addToScore);
+            TreeHealth.treeHealth += regenAmount;
             spawnLocations[spawnLocationIndex].isSpawned = false;
             Destroy(Instantiate(pickUpEffect, transform.position, Quaternion.identity), .283f);
             Destroy(gameObject);
