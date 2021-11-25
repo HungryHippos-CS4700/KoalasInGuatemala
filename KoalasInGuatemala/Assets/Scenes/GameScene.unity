@@ -473,7 +473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &74547992
 Transform:
   m_ObjectHideFlags: 0
@@ -518,7 +518,6 @@ MonoBehaviour:
   waveCount: 1
   spawnRate: 1
   timeBetweenWaves: 15
-  state: 2
   UI: {fileID: 1486552008}
   shop: {fileID: 1383395810}
   waveText: {fileID: 8895062435085594704, guid: a2cb97b7efd44424bb302da39ca1c705, type: 3}
@@ -2069,13 +2068,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnLocations:
   - index: 0
-    spawnPoint: {x: 11.96, y: 25.94}
+    spawnPoint: {x: 11.96, y: 26.51}
     isSpawned: 0
   - index: 1
     spawnPoint: {x: 7.16, y: 26.51}
     isSpawned: 0
   - index: 2
-    spawnPoint: {x: -5.38, y: 23.26}
+    spawnPoint: {x: -5.38, y: 23.92}
     isSpawned: 0
   - index: 3
     spawnPoint: {x: -11.98, y: 22.49}

@@ -17,7 +17,6 @@ public class LeafCoin : MonoBehaviour
             PlayerController.gemCount++;
             Score.UpdateScore(addToScore);
             spawnLocations[spawnLocationIndex].isSpawned = false;
-            print(spawnLocationIndex);
             Destroy(Instantiate(pickUpEffect, transform.position, Quaternion.identity), .283f);
             Destroy(gameObject);
         }

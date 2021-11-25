@@ -5,7 +5,7 @@ using UnityEngine;
 public class WaveSpawner : MonoBehaviour
 {
 
-    [SerializeField] private enum SpawnState { SPAWNING, WAITING, COUNTING };
+    public enum SpawnState { SPAWNING, WAITING, COUNTING };
 
     [SerializeField] private Vector2[] airLocations;
     [SerializeField] private Vector2[] groundLocations;
@@ -16,12 +16,12 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private float spawnRate = 1f;
     [SerializeField] private float timeBetweenWaves;
     public static float waveCountdown;
-    [SerializeField] private SpawnState state = SpawnState.COUNTING;
+    public static SpawnState state = SpawnState.COUNTING;
     [SerializeField] private RectTransform UI;
     [SerializeField] private RectTransform shop;
     [SerializeField] private WaveText waveText;
     private float searchCountdown = 1f;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -103,7 +103,8 @@ public class WaveSpawner : MonoBehaviour
         while (!AllEnemiesSpawned())
         {
             int index = Random.Range(0, enemies.Length);
-            while (enemiesLeft[index] <= 0) {
+            while (enemiesLeft[index] <= 0)
+            {
                 index = Random.Range(0, enemies.Length);
             }
 
@@ -148,10 +149,14 @@ public class WaveSpawner : MonoBehaviour
 
     private void CreateEnemyCount()
     {
-        for (int i = 0; i < enemies.Length; i++) {
-            if (enemies[i].name == "Owl") {
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            if (enemies[i].name == "Owl")
+            {
                 enemiesLeft[i] = waveCount * 2;
-            } else if (enemies[i].name == "Squirrel") {
+            }
+            else if (enemies[i].name == "Squirrel")
+            {
                 enemiesLeft[i] = waveCount;
             }
             // add to this for other enemies

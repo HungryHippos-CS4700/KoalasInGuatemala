@@ -15,6 +15,7 @@ public class ItemSpawner : MonoBehaviour
     [SerializeField] private int pointsNeededForHeart;
     [SerializeField] private int nextPointsNeededForHeart;
     [SerializeField] private Shooting shooting;
+    public static bool heartSpawned;
 
     SpawnLocation GetSpawnLocation(bool spawnPowerup)
     {
@@ -26,16 +27,17 @@ public class ItemSpawner : MonoBehaviour
                 availableLocations.Add(location);
             }
         }
-        
+
         // Limit the number of spawned things
-        if (availableLocations.Count <= 7 && !spawnPowerup) {
+        if (availableLocations.Count <= 7 && !spawnPowerup)
+        {
             return null;
         }
 
         // if (availableLocations.Count != 0)
         // {
-            int index = Random.Range(0, availableLocations.Count);
-            return availableLocations[index];
+        int index = Random.Range(0, availableLocations.Count);
+        return availableLocations[index];
         // }
         // else
         // {
@@ -55,8 +57,6 @@ public class ItemSpawner : MonoBehaviour
                 LeafCoin leafCoinClone;
                 leafCoinClone = Instantiate(leafCoin, location.spawnPoint, Quaternion.identity);
                 leafCoinClone.spawnLocationIndex = location.index;
-                print(location.index);
-                print(leafCoinClone.spawnLocationIndex);
                 location.isSpawned = true;
             }
             // else
@@ -88,15 +88,18 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 
-    void SpawnHeart() {
-        if (Score.scoreValue >= pointsNeededForHeart) {
+    void SpawnHeart()
+    {
+        if (Score.scoreValue >= pointsNeededForHeart && !ItemSpawner.heartSpawned)
+        {
             pointsNeededForHeart += nextPointsNeededForHeart;
-            
+
             SpawnLocation location = GetSpawnLocation(false);
             if (location != null)
             {
                 Heart heartClone;
                 heartClone = Instantiate(heart, location.spawnPoint, Quaternion.identity);
+                ItemSpawner.heartSpawned = true;
                 heartClone.spawnLocationIndex = location.index;
                 location.isSpawned = true;
             }
@@ -105,11 +108,15 @@ public class ItemSpawner : MonoBehaviour
 
     void Start()
     {
+        heartSpawned = false;
     }
     void Update()
     {
-        SpawnCoin();
-        SpawnPowerup();
-        SpawnHeart();
+        if (WaveSpawner.state != WaveSpawner.SpawnState.COUNTING)
+        {
+            SpawnCoin();
+            SpawnPowerup();
+            SpawnHeart();
+        }
     }
 }

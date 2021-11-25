@@ -15,6 +15,7 @@ public class Heart : MonoBehaviour
         {
             TreeHealth.treeHealth += regenAmount;
             spawnLocations[spawnLocationIndex].isSpawned = false;
+            ItemSpawner.heartSpawned = false;
             Destroy(Instantiate(pickUpEffect, transform.position, Quaternion.identity), .283f);
             Destroy(gameObject);
         }
