@@ -121,5 +121,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnLocations: []
   pickUpEffect: {fileID: 5783503535457474210, guid: 9cf5452ca1a861b45b8d074ce4dfb548, type: 3}
-  regenAmount: 50
+  regenAmount: 5
   spawnLocationIndex: 0
