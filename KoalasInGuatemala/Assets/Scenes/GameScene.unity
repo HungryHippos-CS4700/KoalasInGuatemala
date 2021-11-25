@@ -3186,6 +3186,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: e7d1ac1a32e159f48af71828168f3caa, type: 3}
     volume: 0.5
     pitch: 1
+  volumeScale: 0.1
 --- !u!4 &946366954
 Transform:
   m_ObjectHideFlags: 0
