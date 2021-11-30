@@ -9,40 +9,62 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private bool isPaused;
     //public Animator transitionType;
     //public float transitionTime = 1f;
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
             isPaused = !isPaused;
         }
 
-        if (isPaused) {
+        if (isPaused)
+        {
             ActivateMenu();
-        } else {
+        }
+        else
+        {
             DeactivateMenu();
         }
     }
 
-    void ActivateMenu() {
+    void ActivateMenu()
+    {
         Time.timeScale = 0;
         AudioListener.pause = true;
         pauseMenuUI.SetActive(true);
     }
 
-    public void DeactivateMenu() {
-        Time.timeScale= 1;
+    public void DeactivateMenu()
+    {
+        Time.timeScale = 1;
         AudioListener.pause = false;
         pauseMenuUI.SetActive(false);
         isPaused = false;
     }
 
-    public void ReturnToMainMenu() {
+    public void ReturnToMainMenu()
+    {
         MainMenu.isFirstTime = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
-    public void RestartGame() {
+    public void RestartGame()
+    {
         DeactivateMenu();
-        SceneManager.LoadScene("GameScene");
+        EndGame();
+    }
+
+    public static void EndGame()
+    {
+        AudioManager.Instance.Stop("Wave");
+        for (int i = 0; i < Shooting.ownedGuns.Length; i++)
+        {
+            Shooting.ownedGuns[i] = false;
+        }
         PlayerController.gemCount = 0;
+        Score.scoreValue = 0;
+        WaveSpawner.state = WaveSpawner.SpawnState.COUNTING;
+
+        SceneManager.LoadScene("GameScene");
     }
 
     /*public void LoadPrevLevel() {
