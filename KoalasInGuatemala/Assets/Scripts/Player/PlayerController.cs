@@ -13,13 +13,14 @@ public class PlayerController : MonoBehaviour
     private float inputHorizontal;
     private float inputVertical;
     public Animator animator;
-    public static int gemCount = 0;
+    public static int gemCount;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         powerUpSpeed = 1;
         buySpeed = 1;
+        gemCount = 0;
     }
 
     void Update()

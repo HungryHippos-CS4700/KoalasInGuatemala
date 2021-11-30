@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
 
-    public static AudioManager Instance = null;
+    public static AudioManager Instance;
     [SerializeField] private float volumeScale;
 
     void Awake()
@@ -25,6 +25,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
+        Instance = null;
         foreach (Sound sound in sounds)
         {
             sound.source = gameObject.AddComponent<AudioSource>();

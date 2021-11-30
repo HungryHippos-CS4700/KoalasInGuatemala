@@ -16,7 +16,7 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private float spawnRate = 1f;
     [SerializeField] private float timeBetweenWaves;
     public static float waveCountdown;
-    public static SpawnState state = SpawnState.COUNTING;
+    public static SpawnState state;
     [SerializeField] private RectTransform UI;
     [SerializeField] private RectTransform shop;
     [SerializeField] private WaveText waveText;
@@ -30,6 +30,7 @@ public class WaveSpawner : MonoBehaviour
 
         enemiesLeft = new int[enemies.Length];
         waveCountdown = 1f;
+        state = SpawnState.COUNTING;
     }
 
     // Update is called once per frame
