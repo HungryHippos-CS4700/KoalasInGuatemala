@@ -11,7 +11,7 @@ public class Acorn : MonoBehaviour
     {
         if (collider.CompareTag("Trunk"))
         {
-            TreeHealth.treeHealth -= 100;
+            TreeHealth.treeHealth -= 30;
             Destroy(Instantiate(explodeEffect, transform.position, Quaternion.identity), .517f);
             AudioManager.Instance.Play("Acorn_Hit", true);
             Destroy(gameObject);
