@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    public enum FireMode
-    {
+    public enum FireMode {
         SEMI,
         SPREAD,
         BURST,
@@ -14,8 +13,8 @@ public class Shooting : MonoBehaviour
         BRR
     }
     public FireMode fireMode;
-    public static bool[] ownedGuns;
-    public static bool pauseShooting;
+    public static bool[] ownedGuns = {false, false, false, false};
+    public static bool pauseShooting = false;
     [SerializeField] private Animator animator;
     [SerializeField] private TreeBehavior treeBehavior;
     [SerializeField] private PlayerController player;
@@ -58,35 +57,35 @@ public class Shooting : MonoBehaviour
         switch (mode)
         {
             case "damage":
-                {
-                    powerUpDamage = 2;
-                    break;
-                }
+            {
+                powerUpDamage = 2;
+                break;
+            }
 
             case "rate":
-                {
-                    powerUpRate = 2;
-                    break;
-                }
+            {
+                powerUpRate = 2;
+                break;
+            }
 
             case "speed":
-                {
-                    player.powerUpSpeed = 1.5f;
-                    break;
-                }
-
+            {
+                player.powerUpSpeed = 1.5f;
+                break;
+            }
+            
             case "insta":
-                {
-                    instakill = 1000;
-                    break;
-                }
+            {
+                instakill = 1000;
+                break;
+            }
         }
         StartCoroutine(PowerUpTime(seconds));
     }
-
+    
     private IEnumerator BurstFire()
     {
-        canBurst = false;
+        canBurst= false;
         for (int i = 0; i < 3; i++)
         {
             AudioManager.Instance.Play("Auto");
@@ -116,8 +115,8 @@ public class Shooting : MonoBehaviour
 
     private void Rocket()
     {
-        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + Random.Range(-cameraShakeOffset - .2f, cameraShakeOffset + .2f),
-        Camera.main.transform.position.y + Random.Range(-cameraShakeOffset - .2f, cameraShakeOffset + .2f), -10f);
+        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + Random.Range(-cameraShakeOffset-.2f, cameraShakeOffset+.2f),
+        Camera.main.transform.position.y + Random.Range(-cameraShakeOffset-.2f, cameraShakeOffset+.2f), -10f);
         AudioManager.Instance.Play("RPG");
         Rocket rocketClone;
         rocketClone = Instantiate(rocket, firePoint.position, Quaternion.Euler(0f, 0f, lookAngle));
@@ -131,60 +130,58 @@ public class Shooting : MonoBehaviour
         switch (fireMode)
         {
             case FireMode.SEMI:
-                {
-                    fireRate = 4f * buyRate * powerUpRate;
-                    Bullet(80f, 20, false, "Pistol");
-                    break;
-                }
+            {
+                fireRate = 4f * buyRate * powerUpRate;
+                Bullet(80f, 20, false, "Pistol");
+                break;
+            }
 
             case FireMode.SPREAD:
+            {
+                fireRate = 1f * buyRate * powerUpRate;
+                for (int i = 0; i < 5; i++)
                 {
-                    fireRate = 1f * buyRate * powerUpRate;
-                    for (int i = 0; i < 5; i++)
-                    {
-                        Bullet(40f, 40, true, "Shotgun");
-                    }
-                    break;
+                    Bullet(40f, 40, true, "Shotgun");
                 }
+                break;
+            }
 
             case FireMode.BURST:
-                {
-                    canBurst = true;
-                    fireRate = 1.5f * buyRate * powerUpRate;
-                    if (canBurst)
-                        StartCoroutine(BurstFire());
-                    break;
-                }
+            {
+                canBurst = true;
+                fireRate = 1.5f * buyRate * powerUpRate;
+                if (canBurst)
+                    StartCoroutine(BurstFire());
+                break;
+            }
 
             case FireMode.RPG:
-                {
-                    fireRate = 2f * buyRate * powerUpRate;
-                    Rocket();
-                    break;
-                }
+            {
+                fireRate = 2f * buyRate * powerUpRate;
+                Rocket();
+                break;
+            }
 
             case FireMode.AUTO:
-                {
-                    fireRate = 12f * buyRate * powerUpRate;
-                    Bullet(80f, 15, false, "Auto");
-                    break;
-                }
+            {
+                fireRate = 12f * buyRate * powerUpRate;
+                Bullet(80f, 15, false, "Auto");
+                break;
+            }
 
             case FireMode.BRR:
-                {
-                    fireRate = 100f;
-                    Bullet(40f, 6, false, "Auto");
-                    break;
-                }
+            {
+                fireRate = 100f;
+                Bullet(40f, 6, false, "Auto");
+                break;
+            }
         }
-        nextFire = Time.time + 1f / fireRate;
+        nextFire = Time.time + 1f/fireRate;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        ownedGuns = new bool[] { false, false, false, false };
-        pauseShooting = false;
         isFiring = false;
         fireRate = 0.25f;
         powerUpRate = 1f;
@@ -235,9 +232,9 @@ public class Shooting : MonoBehaviour
         // if (fireMode == FireMode.AUTO)
         // {
         if (Time.time > nextFire && !treeBehavior.inTrunk && isFiring && !pauseShooting)
-        {
-            Fire();
-        }
+            {
+                Fire();
+            }
         //}
         // else
         // {
@@ -253,13 +250,13 @@ public class Shooting : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha2) && ownedGuns[0])
             fireMode = FireMode.SPREAD;
-
+        
         if (Input.GetKeyDown(KeyCode.Alpha3) && ownedGuns[1])
             fireMode = FireMode.BURST;
 
         if (Input.GetKeyDown(KeyCode.Alpha4) && ownedGuns[2])
             fireMode = FireMode.AUTO;
-
+        
         if (Input.GetKeyDown(KeyCode.Alpha5) && ownedGuns[3])
             fireMode = FireMode.RPG;
 
