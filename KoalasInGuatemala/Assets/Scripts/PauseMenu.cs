@@ -44,28 +44,16 @@ public class PauseMenu : MonoBehaviour
     public void ReturnToMainMenu()
     {
         MainMenu.isFirstTime = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void RestartGame()
     {
         DeactivateMenu();
-        EndGame();
+        ResetGame.Reset();
     }
 
-    public static void EndGame()
-    {
-        AudioManager.Instance.Stop("Wave");
-        for (int i = 0; i < Shooting.ownedGuns.Length; i++)
-        {
-            Shooting.ownedGuns[i] = false;
-        }
-        PlayerController.gemCount = 0;
-        Score.scoreValue = 0;
-        WaveSpawner.state = WaveSpawner.SpawnState.COUNTING;
 
-        SceneManager.LoadScene("GameScene");
-    }
 
     /*public void LoadPrevLevel() {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex - 1));

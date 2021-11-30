@@ -23,21 +23,6 @@ public class TreeHealth : MonoBehaviour
         HealthBar = GetComponent<Image>();
     }
 
-    public static void EndGame()
-    {
-        AudioManager.Instance.Stop("Wave");
-        for(int i = 0; i < Shooting.ownedGuns.Length; i++)
-        {
-            Shooting.ownedGuns[i] = false;
-        }
-        PlayerController.gemCount = 0;
-        Score.scoreValue = 0;
-        WaveSpawner.state = WaveSpawner.SpawnState.COUNTING;
-        
-        print("You Lost!");
-        SceneManager.LoadScene("GameScene");
-    }
-
     void Update()
     {
         healthPct = treeHealth / maxHealth;
@@ -48,7 +33,7 @@ public class TreeHealth : MonoBehaviour
         // Restart game upon getting 0 health
         if (treeHealth <= 0f)
         {
-            TreeHealth.EndGame();
+            SceneManager.LoadScene("EndScene");
         }
     }
 

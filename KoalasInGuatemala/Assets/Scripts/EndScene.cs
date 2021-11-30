@@ -5,37 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class EndScene : MonoBehaviour
 {
-    public bool isGameScene;
-    public Animator transitionType;
-    public float transitionTime = 1f;
 
-    void Start() {
-        transitionType.gameObject.SetActive(true);
-
+    void Start()
+    {
 
     }
-    public void StartBtn() {
-        Debug.Log("Loading scene: Main");
-        SceneManager.LoadScene("GameScene");
+    public void RetryBtn()
+    {
+        Debug.Log("Loading scene: GameScene");
+        ResetGame.Reset();
     }
 
-    public void QuitBtn() {
-        Debug.Log("Loading scene: Main");
+    public void QuitBtn()
+    {
+        Debug.Log("Loading scene: MainMenu");
         SceneManager.LoadScene("MainMenu");
-    }
-
-    public void LoadNextLevel() {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
-    }
-
-    IEnumerator LoadLevel(int levelIndex) {
-        // play animation
-        transitionType.SetTrigger("Start");
-
-        // wait
-        yield return new WaitForSeconds(transitionTime);
-
-        // load scene
-        SceneManager.LoadScene(levelIndex);
     }
 }

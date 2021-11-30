@@ -95,7 +95,6 @@ public class WaveSpawner : MonoBehaviour
         Shooting.pauseShooting = false;
         LeanTween.move(shop, new Vector2(60, 0), .1f);
         state = SpawnState.SPAWNING;
-
         CreateEnemyCount();
 
         print("Spawning Wave: " + waveCount);
@@ -119,7 +118,6 @@ public class WaveSpawner : MonoBehaviour
 
     private void SpawnEnemy(GameObject enemy)
     {
-        // print("Spawning Enemy: " + enemy.name);
         Enemy enemyProperties = enemy.GetComponent<Enemy>();
         if (!enemyProperties.isGroundEnemy)
         {
