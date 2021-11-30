@@ -9,42 +9,77 @@ public class MainMenu : MonoBehaviour
     public Animator transitionType;
     public Animator startOfGame;
     public float transitionTime = 1f;
+    public static bool isFirstTime = true;
+    public GameObject MainMenuHolder;
+    public GameObject MainMenuUI;
+    public GameObject TutorialUI;
 
-    void Start() {
+    void Start()
+    {
+        Debug.Log("isFirstTime: " + isFirstTime);
         transitionType.gameObject.SetActive(true);
 
-        if (isGameScene) {
+        if (isGameScene)
+        {
             transitionType.SetTrigger("End");
-        } else {
-            Debug.Log(startOfGame);
-            startOfGame.gameObject.SetActive(true);
-            startOfGame.SetTrigger("Start");
+        }
+        else
+        {
+            if (isFirstTime) {
+                Debug.Log(startOfGame);
+                startOfGame.gameObject.SetActive(true);
+                startOfGame.SetTrigger("Start");
+            } else {
+                startOfGame.enabled = false;
+                MainMenuHolder.transform.localPosition = new Vector3(0, 0, 0);
+                
+            }
         }
 
     }
-    public void StartBtn() {
+    public void StartBtn()
+    {
         Debug.Log("Loading scene: Main");
         //SceneManager.LoadScene("Main");
         LoadNextLevel();
     }
 
-    public void QuitBtn() {
+    public void TutorialBtn() {
+        Debug.Log("Opening Tutorial Screen");
+        MainMenuUI.SetActive(false);
+        TutorialUI.SetActive(true);
+    }
+
+    public void TutorialBackBtn() {
+        Debug.Log("Closing Tutorial Screen");
+        MainMenuUI.SetActive(true);
+        TutorialUI.SetActive(false);
+    }
+
+    public void QuitBtn()
+    {
         Debug.Log("Quitting to desktop.");
         Application.Quit();
     }
 
-    public void LoadNextLevel() {
+    public void LoadNextLevel()
+    {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    IEnumerator LoadLevel(int levelIndex) {
+    IEnumerator LoadLevel(int levelIndex)
+    {
+        Debug.Log("Setting transitionType.SetTrigger to Start");
         // play animation
         transitionType.SetTrigger("Start");
 
+        Debug.Log("yield return new WaitForSeconds(transitionTime)");
+        Debug.Log("current buildIndex: " + SceneManager.GetActiveScene().buildIndex);
         // wait
         yield return new WaitForSeconds(transitionTime);
 
         // load scene
+        Debug.Log("trying to loadscene");
         SceneManager.LoadScene(levelIndex);
     }
 }
