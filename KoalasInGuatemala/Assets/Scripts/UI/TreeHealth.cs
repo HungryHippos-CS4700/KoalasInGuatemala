@@ -10,6 +10,7 @@ public class TreeHealth : MonoBehaviour
     [SerializeField] private float maxHealth;
     private float healthPct;
     public Gradient gradient;
+    public GameObject GameOverPanel;
 
     Color ColorFromGradient(float value)  // float between 0-1
     {
@@ -29,12 +30,6 @@ public class TreeHealth : MonoBehaviour
         HealthBar.fillAmount = healthPct;
 
         HealthBar.color = ColorFromGradient(healthPct);
-
-        // Restart game upon getting 0 health
-        if (treeHealth <= 0f)
-        {
-            SceneManager.LoadScene("EndScene");
-        }
     }
 
 }

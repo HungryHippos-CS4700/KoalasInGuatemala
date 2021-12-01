@@ -44,10 +44,8 @@ public class PauseMenu : MonoBehaviour
     public void ReturnToMainMenu()
     {
         MainMenu.isFirstTime = false;
-        Debug.Log("Time.timeScale before: " + Time.timeScale);
         Time.timeScale = 1;
         AudioListener.pause = true;
-        Debug.Log("Time.timeScale after: " + Time.timeScale);
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -56,21 +54,4 @@ public class PauseMenu : MonoBehaviour
         DeactivateMenu();
         ResetGame.Reset();
     }
-
-
-
-    /*public void LoadPrevLevel() {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex - 1));
-    }
-
-    IEnumerator LoadLevel(int levelIndex) {
-        // play animation
-        transitionType.SetTrigger("Start");
-
-        // wait
-        yield return new WaitForSeconds(transitionTime);
-
-        // load scene
-        SceneManager.LoadScene(levelIndex);
-    }*/
 }
