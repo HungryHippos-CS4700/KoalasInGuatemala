@@ -10,6 +10,7 @@ public class ResetGame : MonoBehaviour
         SceneManager.LoadScene("GameScene");
         if (AudioManager.Instance != null)
         {
+            AudioListener.pause = false;
             AudioManager.Instance.Stop("Wave");
         }
         for (int i = 0; i < Shooting.ownedGuns.Length; i++)

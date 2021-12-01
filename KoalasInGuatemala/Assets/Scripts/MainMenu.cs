@@ -28,7 +28,7 @@ public class MainMenu : MonoBehaviour
             if (isFirstTime)
             {
                 Debug.Log(startOfGame);
-                startOfGame.gameObject.SetActive(true);
+                //startOfGame.gameObject.SetActive(true);
                 startOfGame.SetTrigger("Start");
             }
             else
@@ -39,6 +39,10 @@ public class MainMenu : MonoBehaviour
             }
         }
 
+    }
+
+    public void OnDestroy() {
+        Debug.Log("is being destroyed");
     }
     public void StartBtn()
     {
@@ -79,12 +83,13 @@ public class MainMenu : MonoBehaviour
         transitionType.SetTrigger("Start");
 
         Debug.Log("yield return new WaitForSeconds(transitionTime)");
-        // wait
+        Debug.Log("Time.timeScale before (in coroutine): " + Time.timeScale);
         yield return new WaitForSeconds(transitionTime);
 
         // load scene
-        // Debug.Log("trying to loadscene");
+        Debug.Log("trying to loadscene");
         // SceneManager.LoadScene("GameScene");
         ResetGame.Reset();
+        yield return null;
     }
 }

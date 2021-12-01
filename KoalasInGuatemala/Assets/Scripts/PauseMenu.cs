@@ -14,15 +14,15 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             isPaused = !isPaused;
-        }
 
-        if (isPaused)
-        {
-            ActivateMenu();
-        }
-        else
-        {
-            DeactivateMenu();
+            if (isPaused)
+            {
+                ActivateMenu();
+            }
+            else
+            {
+                DeactivateMenu();
+            }
         }
     }
 
@@ -44,6 +44,10 @@ public class PauseMenu : MonoBehaviour
     public void ReturnToMainMenu()
     {
         MainMenu.isFirstTime = false;
+        Debug.Log("Time.timeScale before: " + Time.timeScale);
+        Time.timeScale = 1;
+        AudioListener.pause = true;
+        Debug.Log("Time.timeScale after: " + Time.timeScale);
         SceneManager.LoadScene("MainMenu");
     }
 
