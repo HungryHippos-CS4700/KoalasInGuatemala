@@ -40,7 +40,7 @@ public class PowerUp : MonoBehaviour
         if (WaveSpawner.state == WaveSpawner.SpawnState.COUNTING)
         {
             DestoryPowerUp();
-            print("wave over");
+            // print("wave over");
         }
     }
 }
