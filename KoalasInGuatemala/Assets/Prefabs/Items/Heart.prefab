@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 776762936444716137, guid: c01072395f5b3a746b94522acc3bc92c, type: 3}
       propertyPath: m_Name
-      value: TempHeart Variant
+      value: Heart
       objectReference: {fileID: 0}
     - target: {fileID: 4102026128880052514, guid: c01072395f5b3a746b94522acc3bc92c, type: 3}
       propertyPath: m_RootOrder
@@ -17,23 +17,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4102026128880052514, guid: c01072395f5b3a746b94522acc3bc92c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.1634238
+      value: 0.14273427
       objectReference: {fileID: 0}
     - target: {fileID: 4102026128880052514, guid: c01072395f5b3a746b94522acc3bc92c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.1634238
+      value: 0.14273427
       objectReference: {fileID: 0}
     - target: {fileID: 4102026128880052514, guid: c01072395f5b3a746b94522acc3bc92c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.1634238
+      value: 0.14273427
       objectReference: {fileID: 0}
     - target: {fileID: 4102026128880052514, guid: c01072395f5b3a746b94522acc3bc92c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.07
+      value: -4.82
       objectReference: {fileID: 0}
     - target: {fileID: 4102026128880052514, guid: c01072395f5b3a746b94522acc3bc92c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.81
+      value: 2.78
       objectReference: {fileID: 0}
     - target: {fileID: 4102026128880052514, guid: c01072395f5b3a746b94522acc3bc92c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -71,6 +71,10 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7591862400755154607, guid: c01072395f5b3a746b94522acc3bc92c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 720a6d3711524134f826484290d61d8e, type: 3}
     - target: {fileID: 7591862400755154607, guid: c01072395f5b3a746b94522acc3bc92c, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -121,5 +125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnLocations: []
   pickUpEffect: {fileID: 5783503535457474210, guid: 9cf5452ca1a861b45b8d074ce4dfb548, type: 3}
-  regenAmount: 5
+  regenAmount: 10
   spawnLocationIndex: 0
+  rotationsPerMinute: 10

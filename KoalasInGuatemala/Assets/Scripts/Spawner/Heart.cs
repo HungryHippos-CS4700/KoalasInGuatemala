@@ -8,6 +8,7 @@ public class Heart : MonoBehaviour
     [SerializeField] private GameObject pickUpEffect;
     [SerializeField] private int regenAmount;
     public int spawnLocationIndex;
+    [SerializeField] private float rotationsPerMinute;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -25,5 +26,12 @@ public class Heart : MonoBehaviour
     void Start()
     {
         spawnLocations = FindObjectOfType<ItemSpawner>().spawnLocations;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Rotate(0, 6.0f * rotationsPerMinute * Time.deltaTime, 0);
+
     }
 }

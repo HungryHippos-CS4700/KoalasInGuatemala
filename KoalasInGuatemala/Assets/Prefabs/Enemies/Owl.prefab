@@ -161,7 +161,6 @@ MonoBehaviour:
   maxHealth: 100
   health: 100
   healthBar: {fileID: 3288856968454279049}
-  audioManager: {fileID: 0}
   damageText: {fileID: 7818319922044016141, guid: 873380f01d3fa6442bc13bfbc2f4589c, type: 3}
   damageTextOffset: 0.5
   isGroundEnemy: 0
@@ -179,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   explodeEffect: {fileID: 5412411019882460708, guid: 004c5b1c4a3aaed469ebc83a7a305a90, type: 3}
+  owlDamage: 10
 --- !u!114 &468903422367833484
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -145,3 +145,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodeEffect: {fileID: 5412411019882460708, guid: 004c5b1c4a3aaed469ebc83a7a305a90, type: 3}
+  acornDamage: 2

@@ -7,12 +7,13 @@ public class OwlBehavior : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private float speed;
     [SerializeField] private GameObject explodeEffect;
+    [SerializeField] private int owlDamage;
     
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.CompareTag("Trunk"))
         {
-            TreeHealth.treeHealth -= 10;
+            TreeHealth.treeHealth -= owlDamage;
             Destroy(Instantiate(explodeEffect, transform.position, Quaternion.identity), .517f);
             Destroy(gameObject);
         }
