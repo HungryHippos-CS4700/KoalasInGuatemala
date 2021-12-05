@@ -13,11 +13,16 @@ public class MainMenu : MonoBehaviour
     public GameObject MainMenuHolder;
     public GameObject MainMenuUI;
     public GameObject TutorialUI;
-
     void Start()
     {
         Debug.Log("isFirstTime: " + isFirstTime);
         transitionType.gameObject.SetActive(true);
+
+        if (AudioManager.Instance != null)
+        {
+            AudioListener.pause = false;
+            AudioManager.Instance.Stop("Wave");
+        }
 
         if (isGameScene)
         {
@@ -25,6 +30,7 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
+            AudioManager.Instance.Play("Main_menu");
             if (isFirstTime)
             {
                 Debug.Log(startOfGame);
@@ -47,7 +53,8 @@ public class MainMenu : MonoBehaviour
     public void StartBtn()
     {
         Debug.Log("Loading scene: Main");
-        //SceneManager.LoadScene("Main");
+        AudioListener.pause = false;
+        AudioManager.Instance.Stop("Main_menu");
         LoadNextLevel();
     }
 

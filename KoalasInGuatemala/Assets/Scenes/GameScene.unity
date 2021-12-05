@@ -4308,111 +4308,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 192502411}
---- !u!1 &946366952
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 946366954}
-  - component: {fileID: 946366953}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &946366953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 946366952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcd48e7eb1944644f823ae55bb11dba0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: Pistol
-    source: {fileID: 0}
-    clip: {fileID: 8300000, guid: 5d9dfb832966f844f8cb0617a6b1035b, type: 3}
-    volume: 0.25
-    pitch: 1
-  - name: Shotgun
-    source: {fileID: 0}
-    clip: {fileID: 8300000, guid: d2aa0a248f09d434aaa9975db4886193, type: 3}
-    volume: 0.25
-    pitch: 1
-  - name: Auto
-    source: {fileID: 0}
-    clip: {fileID: 8300000, guid: 637d10e187463464a9f2be9ff1022ca6, type: 3}
-    volume: 0.25
-    pitch: 1
-  - name: RPG
-    source: {fileID: 0}
-    clip: {fileID: 8300000, guid: 91d028be3b6683d4c948465408968954, type: 3}
-    volume: 0.25
-    pitch: 1
-  - name: Bullet_Collision
-    source: {fileID: 0}
-    clip: {fileID: 8300000, guid: 3f7aeb54466d2c64c91727de38e4a856, type: 3}
-    volume: 0.15
-    pitch: 1
-  - name: RPG_Collision
-    source: {fileID: 0}
-    clip: {fileID: 8300000, guid: 6783eec9c42445c4b8ca2b14eb81bb0f, type: 3}
-    volume: 0.25
-    pitch: 1
-  - name: Enemy_Hit
-    source: {fileID: 0}
-    clip: {fileID: 8300000, guid: 21c8c8cdfb257f944bdd6e2cade323c8, type: 3}
-    volume: 0.5
-    pitch: 1
-  - name: Enemy_Death
-    source: {fileID: 0}
-    clip: {fileID: 8300000, guid: 4ad3850454700c545b5ba2dd9f9fba0a, type: 3}
-    volume: 0.25
-    pitch: 1
-  - name: Wave_Complete
-    source: {fileID: 0}
-    clip: {fileID: 8300000, guid: 5d5630fdb07f12a4fa2f219ba695d9cf, type: 3}
-    volume: 0.25
-    pitch: 1
-  - name: Wave
-    source: {fileID: 0}
-    clip: {fileID: 8300000, guid: c82f7e76e0aa1004e87db3874edb66e5, type: 3}
-    volume: 0.25
-    pitch: 1
-  - name: Throw_Acorn
-    source: {fileID: 0}
-    clip: {fileID: 8300000, guid: 36d8ba40a3e86424997bc3ad79cfb5b8, type: 3}
-    volume: 0.5
-    pitch: 1
-  - name: Acorn_Hit
-    source: {fileID: 0}
-    clip: {fileID: 8300000, guid: e7d1ac1a32e159f48af71828168f3caa, type: 3}
-    volume: 0.5
-    pitch: 1
-  volumeScale: 0.1
---- !u!4 &946366954
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 946366952}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &977433592
 GameObject:
   m_ObjectHideFlags: 0
@@ -6756,7 +6651,7 @@ Transform:
   - {fileID: 502234359}
   - {fileID: 74547992}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1264495587
 GameObject:
@@ -7006,7 +6901,7 @@ Transform:
   - {fileID: 1845989117}
   - {fileID: 1406481947}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1311921777
 GameObject:
@@ -10090,7 +9985,7 @@ Transform:
   - {fileID: 50992875}
   - {fileID: 4324217}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1406481945
 GameObject:
@@ -10690,7 +10585,7 @@ RectTransform:
   - {fileID: 909211057}
   - {fileID: 192502412}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -15182,7 +15077,7 @@ Transform:
   - {fileID: 383526243}
   - {fileID: 5076953}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1947382571
 GameObject:
