@@ -1,4 +1,4 @@
-# KoalasInGuatemala
+# Koalas In Guatemala
 Koalas in Guatemala is a fast-paced 2D action arcade game where the player controls a gun wielding koala while defending its home, the tree of life.
 
 ## PC/Mac Build (recommended for the best experience)
